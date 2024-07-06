@@ -1,1 +1,0 @@
-print("Szevasz cighoooo")
