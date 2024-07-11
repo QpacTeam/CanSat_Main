@@ -3,73 +3,58 @@
 #include "GPS.h"
 
 #define SWTIMER_CH_GPS 2
-#define Data ((String)(""))
-#define MAX_LEN 150
+#define MAX_DATA 4
 
-UART gps(4, 5, NC, NC);
+UART GPS(4, 5, NC, NC);
 
-static char buffer[MAX_LEN];
-static unsigned int len;
-const char* GPS_Data;
+static arduino::String GPS_raw_Data = "";
+arduino::String GPS_final_Data[MAX_DATA];
 
 void GPS_Init(void) {
-  unsigned int i;
-  i = MAX_LEN;
-  char *dst;
-  dst = buffer;
-  while (i--) {
-    *dst++ = 0;
+
+  GPS.begin(9600);
+  while (!GPS) {
+    ;
   }
 
-  len = 0;
-  gps.begin(9600);
+  arduino::String GPS_raw_Data = "";
 }
 
 void GPS_Run(void) {
+
+  static arduino::String buffer = "";
+  unsigned int slot = 0;
+  unsigned int counter = 0;
   
-  unsigned int n;
-  char ch;
-  if ((n = gps.available()) > 0) {  //   if ((n = gps.available() > 0 ) {
-    ch = gps.read();
-    switch (ch) {
-      case '$':
-        {
-          len = 0;
-          buffer[len] = ch;
-          len++;
-          if (len == MAX_LEN) {
-            len = 0;
-          }
-          break;
-        }
-      case '\n':
-        {
-          buffer[len] = ch;
-          len++;
-          if (len == MAX_LEN) {
-            len = 0;
-          }
-          if (len > 1) {
-            GPS_Data = buffer;
-            return GPS_Data;
-          }
-          break;
-        }
-      default:
-        {
-          buffer[len] = ch;
-          len++;
-          if (len == MAX_LEN) {
-            len = 0;
-          }
-          break;
-        }
+  while (GPS.available() == 0) {}   // < Wait until the data is available
+  
+  GPS_raw_Data = GPS.readString();   // < Read the data from the GPS
+  GPS_raw_Data.trim();     // < Remove The whitespaces and the /n /r on lineend
+
+  //TODO test needed (I hope it works...)
+
+  for (unsigned int i =1; i <= (GPS_raw_Data.lenght()-4); i++ ) {
+    if (GPS_raw_Data.charAt[i] == '$') {
+      counter = 5;
+      if (i == 1) {}
+      else {
+        GPS_final_Data[slot] = buffer;
+        slot++;
+      }
+    }
+    else {
+      if (counter == 0 ) buffer += String(GPS_raw_Data.charAt[i]);
+      else counter--;
+    }
+    if (slot == MAX_DATA) {
+      break;
     }
   }
+  GPS_final_Data[slot] = buffer;
 }
 
-// TODO adatkivitel
+arduino::String GPS_Get_Data(void) {
+  return GPS_final_Data;
+}
 
 #undef SWTIMER_CH_GPS
-#undef Data((String)(""))
-#undef MAX_LEN 150

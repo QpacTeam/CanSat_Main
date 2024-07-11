@@ -10,7 +10,7 @@ static Adafruit_BMP280 bmp;
 static float temperature;
 static unsigned float pressure;
 static unsigned float altitude;
-static arduino::String BMP_Data[3];
+arduino::String BMP_Data[3];
 
 void BMP_Init(void) {
 

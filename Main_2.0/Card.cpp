@@ -8,7 +8,7 @@
 static const arduino::String SEP = " < ";
 static float Time;
 
-void SD_Init(void) {
+void Card_Init(void) {
 
   SD.begin(CHIPSELECT);
 
@@ -17,10 +17,9 @@ void SD_Init(void) {
   Time /= 1000;
 
   datFile.println("BEGIN" +SEP +String(Time));     // < Writeing the start sequence
-
 }
 
-void SD_run( ) { //TODO Data be
+void Card_Run( ) { //TODO Data be
 
   static arduino::String Data_from_BMP[3];
   static unsigned long Cycle_from_SwTimer;
@@ -48,7 +47,7 @@ void SD_run( ) { //TODO Data be
 
 
 
-    /* === Egyéb === */
+    /* === Other === */
 
 
 

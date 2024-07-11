@@ -1,6 +1,9 @@
 /* === INCLUDES === */
 #include "SwTimer.h"
 #include "Card.h"
+#include "BMP.h"
+#include "GPS.h"
+#include "LoRa.h"
 
 arduino::String Data_Flow[10];
 unsigned long Main_State = 0;
@@ -25,9 +28,9 @@ void setup() {
   LoRa_Init();
 
   /* === SET TIMERS === */
-  void SwTimer_Set_Continues( BMP_CH, BMP_TIME, BMP_Run() );
-  void SwTimer_Set_Continues( CARD_CH, CARD_TIME, Card_Run() );
-  void SwTimer_Set_Continues( LORA_CH, LORA_TIME, LoRa_Run() );
+  SwTimer_Set_Continues( BMP_CH,    BMP_TIME,    BMP_Run  );
+  SwTimer_Set_Continues( CARD_CH,   CARD_TIME,   Card_Run );
+  SwTimer_Set_Continues( LORA_CH,   LORA_TIME,   LoRa_Run );
 }
 
 void loop() {         // TODO make the states
