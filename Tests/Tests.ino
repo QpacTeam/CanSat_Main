@@ -1,47 +1,50 @@
+/*
+Ez a kód példa arra, hogan lehet adatot szegmenseket kiragadni a GPS adatfolyamból.
+  Man:
+    > A Data_to_Get array tartalmazza a sorszámokat, hogy melyik elemeket akarjuk kivenni. $GPSLL a 0-ás index, alma az 1-es és így tovább
+    > Az elemek megadásánál a Data_to_Get-ben a növekvő sorrend fontos!
+    > A program csinálni fog egy processed_Data nevű array-t, ami pontosan akkora amekkorának lennie kell, és sorrendben tartalmazza a kívánt elemeket.
+    > A 27-dik sorban valamiért a sizeof() függvény négyszeres értéket ad vissza, nem tudom miért. Egy egyszerű osztással korrigálva van, de ez potenciális problémaforrás!
 
-#define Data_to_Get 4
+*/
+
+static const unsigned int Data_to_Get[] = {1, 3, 5, 6};
 
 static arduino::String gec = "$GPSLL,alam,korte,fasz,padlizsan,patkany,shit,zigizik,imi,berci,jociegyfasz*77";
-static arduino::String lista[6];
+
 
 void setup() {
+
   Serial.begin(9600);
 }
 
-void loop() {
-/*
-  gec.length()
 
-  for (int i =6, <= gec.lenght()-3, i++) {
-    if (gec.charAt(i) == ",") {
-      coma++;
-    }
-  }
-*/
+void loop() {
 
   static arduino::String buffer = "";
-  /* NE LEGYEN STATIC > */ unsigned int elem = 0; /* < NE LEGYEN STATIC */
-  unsigned int comma = 0;
+  unsigned int element = 0;   // NE LEGYEN STATIC
+  unsigned int sep = 0;
+  unsigned int all_data = (sizeof(Data_to_Get)/4);    // < Ha valami elbaszódik, ezt ellenőrizd először!
+  arduino::String proc_Data[all_data];
 
   for (int i =1; i <= (gec.length()-4); i++) {
     if (gec.charAt(i)== ',') {
-      if (comma == Data_to_Get) {
-        lista[elem] = buffer;
-        elem++;
-        comma++;
+      if (sep == Data_to_Get[element]) {
+        proc_Data[element] = buffer;
         buffer = "";
+        element++;
       }
-      else comma++;
+      sep++;
     }
-    else if (comma == Data_to_Get) buffer += String(gec.charAt(i));
+    else if (sep == Data_to_Get[element]) buffer += String(gec.charAt(i));
   }
-  lista[elem] = buffer;
+  proc_Data[element] = buffer;
 
-  Serial.println(lista[0]);
-  Serial.println(lista[1]);
+  for (int i =0; i < all_data; i++) {
+    Serial.println(proc_Data[i]);
+  }
 
-}
-
-arduino::String cut() {
+  Serial.println("---------------");
+  delay(1000);
 
 }
