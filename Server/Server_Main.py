@@ -1,39 +1,40 @@
 import Utility
 import time
 
-# Ha valamelyik function elé odaírod, ezt, akkor le tudod mérni annak a lefutási idejét.
-#
-# @Utility.timer
-# def func()
-#    pass
 
-# Így sokkal átláthatóbb, és hatékonyabb lesz a kód, sőt még a pycharm is visít, ha valamit elgyeszel
-Main_Over: bool = False
-MAIN_FREQUENCY: float = 1000
-
-def Init():
+def init() -> None:
     pass
 
-def Main():
-    Init()      # << Setting everything to default
-    Main_del_Time: float = 0
-    Main_act_Time: float = time.time()
+
+def loop() -> None:
+    from Variables import FREQUENCY, CONTROL_SLEEP, Main_State
+    import Server_Run as server
+
+    act_time: float
+    sleep_time: float
+    pas_time: float = time.time()
 
     while 1:
-        if Main_del_Time >= MAIN_FREQUENCY:
-            pass
+        # Loop-control
+        act_time = time.time()
+        dif_time = act_time - pas_time
 
+        if not dif_time < FREQUENCY:
+            pas_time = act_time + (dif_time - FREQUENCY)
 
-            # Main code
+            # Main state machine
+            match Main_State:
+                case 1:
+                    # Starts the server
+                    server.run()
+                    pass
+                case 0:
+                    print("exit_code:0")
+                    break
 
+        time.sleep(CONTROL_SLEEP)  # < loop sleep to optimize
 
-            Main_act_Time = time.time()
-        if Main_Over:
-            break
-
-        Main_del_Time = time.time() - Main_act_Time
-        time.sleep(0.002)   # << Hogy ne hajtsuk túl a CPU-t
-    return
 
 if __name__ == "__main__":
-    Main()
+    init()
+    loop()

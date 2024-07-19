@@ -18,6 +18,9 @@ void Local_Data_Prep() {  // < cut on $ < make 5 different line
   unsigned int dollar_sign = 0;
   char priv = 'B';
 
+//  TODO GNGGA and GNGSA megoldani
+
+
   for (int i =7; i <= (raw.length()); i++) {
     if (raw.charAt(i) == '$') {
       if (priv != raw.charAt(i+5)) {
@@ -44,7 +47,7 @@ void Local_Data_Prep() {  // < cut on $ < make 5 different line
 }
 
 void Data_Process() {
-  
+
 }
 
 void loop() {
