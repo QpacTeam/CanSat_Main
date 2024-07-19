@@ -2,12 +2,12 @@ import Utility
 import time
 
 
-def init() -> None:
+def init() -> None:     # << Set
     pass
 
 
 def loop() -> None:
-    from Variables import FREQUENCY, CONTROL_SLEEP, Main_State
+    from Server_Variables import FREQUENCY, CONTROL_SLEEP, Main_State
     import Server_Run as server
 
     act_time: float
@@ -25,16 +25,20 @@ def loop() -> None:
             # Main state machine
             match Main_State:
                 case 1:
-                    # Starts the server
-                    server.run()
+                    server.run()    # << Runs the server
+                    pass
+                case 66:
+                    init()      # << Reset the server
                     pass
                 case 0:
-                    print("exit_code:0")
+                    print("exit_code:0")    # << Exit the process
                     break
+                case _:
+                    pass
 
-        time.sleep(CONTROL_SLEEP)  # < loop sleep to optimize
+        time.sleep(CONTROL_SLEEP)  # << loop sleep to optimize
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # << Starting sequence
     init()
     loop()
