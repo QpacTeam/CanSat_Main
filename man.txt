@@ -12,7 +12,3 @@ Git pull and rewrite everything:
 
 Revrite all file localy:
 > git pull --rebase --autostash
-
-
-
-valami

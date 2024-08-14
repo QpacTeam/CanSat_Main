@@ -58,7 +58,7 @@ void SwTimer_Run(void) {
     }
   }
 
-//  Cycle++;    // < Cycle grow
+  Cycle++;    // < Cycle grow
 }
 
 // Set the timers
@@ -93,10 +93,5 @@ unsigned long SwTimer_Get_Remaining_Time(unsigned int ch) {
   }
   return 0;
 }
-
-/*
-unsigned long SwTimer_Get_Cycle(void) {
-  return Cycle;
-}*/
 
 #undef MAX_TIMER

@@ -3,7 +3,9 @@
 #include <SPI.h>
 #include "Card.h"
 #include "SwTimer.h"
+/*
 #include "BMP.h"
+*/
 
 #define CHIPSELECT 10
 static const arduino::String SEP = " < ";

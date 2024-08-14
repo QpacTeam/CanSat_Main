@@ -53,8 +53,4 @@ void GPS_Run(void) {
   GPS_final_Data[slot] = buffer;
 }
 
-arduino::String GPS_Get_Data(void) {
-  return GPS_final_Data[MAX_DATA];
-}
-
 #undef SWTIMER_CH_GPS
