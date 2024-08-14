@@ -3,10 +3,13 @@
 #include <SPI.h>
 #include "Card.h"
 #include "SwTimer.h"
+#include "BMP.h"
 
 #define CHIPSELECT 10
 static const arduino::String SEP = " < ";
 static float Time;
+
+arduino::String BMP_data[3];
 
 void Card_Init(void) {
 
@@ -16,7 +19,7 @@ void Card_Init(void) {
   Time = millis();
   Time /= 1000;
 
-  datFile.println("BEGIN" +SEP +String(Time));     // < Writeing the start sequence
+  dataFile.println("BEGIN" +SEP +String(Time));     // < Writeing the start sequence
 }
 
 void Card_Run( ) { //TODO Data be

@@ -4,12 +4,12 @@
 #include "SwTimer.h"
 #include "BMP.h"
 
-#define BMP_SEE_LEVEL_PRESSURE ((unsigned float)(1013.25))
+#define BMP_SEE_LEVEL_PRESSURE ((float)(1013.25))
 
 static Adafruit_BMP280 bmp;
 static float temperature;
-static unsigned float pressure;
-static unsigned float altitude;
+static float pressure;
+static float altitude;
 arduino::String BMP_Data[3];
 
 void BMP_Init(void) {

@@ -33,8 +33,8 @@ void GPS_Run(void) {
 
   //TODO test needed (I hope it works...)
 
-  for (unsigned int i =1; i <= (GPS_raw_Data.lenght()-4); i++ ) {
-    if (GPS_raw_Data.charAt[i] == '$') {
+  for (unsigned int i =1; i <= (GPS_raw_Data.length()-4); i++ ) {
+    if (GPS_raw_Data.charAt(i) == '$') {
       counter = 5;
       if (i == 1) {}
       else {
@@ -43,7 +43,7 @@ void GPS_Run(void) {
       }
     }
     else {
-      if (counter == 0 ) buffer += String(GPS_raw_Data.charAt[i]);
+      if (counter == 0 ) buffer += String(GPS_raw_Data.charAt(i));
       else counter--;
     }
     if (slot == MAX_DATA) {
@@ -54,7 +54,7 @@ void GPS_Run(void) {
 }
 
 arduino::String GPS_Get_Data(void) {
-  return GPS_final_Data;
+  return GPS_final_Data[MAX_DATA];
 }
 
 #undef SWTIMER_CH_GPS

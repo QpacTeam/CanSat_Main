@@ -28,13 +28,13 @@ void setup() {
   LoRa_Init();
 
   /* === SET TIMERS === */
-  SwTimer_Set_Continues( BMP_CH,    BMP_TIME,    BMP_Run  );
-  SwTimer_Set_Continues( CARD_CH,   CARD_TIME,   Card_Run );
-  SwTimer_Set_Continues( LORA_CH,   LORA_TIME,   LoRa_Run );
+  SwTimer_Set_Continues( BMP_CH,    BMP_TIME,    BMP_Run  );    // < megy
+  SwTimer_Set_Continues( CARD_CH,   CARD_TIME,   Card_Run );    // < megy
+  //SwTimer_Set_Continues( LORA_CH,   LORA_TIME,   LoRa_Run );
 }
 
 void loop() {         // TODO make the states
-  swich(Main_State){
+  switch(Main_State){
     case 0:
     {
       SwTimer_Run();
