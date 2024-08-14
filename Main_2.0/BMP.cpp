@@ -39,8 +39,9 @@ void BMP_Run(void) {
   BMP_Data[2] = String(altitude);
 }
 
+/*
 arduino::String BMP_Get_Data(void) {
   return BMP_Data[3];
 }
-
+*/
 #undef BMP_SEE_LEVEL_PRESSURE

@@ -3,6 +3,6 @@
 
 void BMP_Init(void);
 void BMP_Run(void);
-arduino::String BMP_Get_Data(void);
+//arduino::String BMP_Get_Data(void);
 
 #endif  // BMP_H_INCLUDED
