@@ -49,4 +49,4 @@ void loop() {         // TODO make the states
 }
 
 #undef BMP_CH
-#define BMP_TIME
+#undef BMP_TIME
