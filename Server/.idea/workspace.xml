@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d70a15-8411-402c-80e6-178b5716e307" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/Reciver_Main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Reciver_Variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/BMP.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/BMP.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/globals.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/globals.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server_Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server_Run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server_Run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server_Variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tests/Globals_test/Globals_test.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../archive/Main_2.0/GPS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../archive/Main_2.0/GPS.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../archive/gps_adat/Work_data" beforeDir="false" afterPath="$PROJECT_DIR$/../archive/gps_adat/Work_data" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +34,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: -1
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2jTv4pirVzEGYsDHvjBj0UykSIr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -48,12 +51,13 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/lorant/Arduino/CanSat_Main/Server"
+    "last_opened_file_path": "/home/lorant/WorkingSpace/CanSat_Main/Server"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="Server_Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Server" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -78,6 +82,13 @@
         <item itemvalue="Python.Server_Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-f5635417b835-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18968.29" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

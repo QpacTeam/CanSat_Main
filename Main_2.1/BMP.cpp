@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_BMP280.h>
-//#include "SwTimer.h"
 #include "BMP.h"
 
 #define cPress ((float)(1013.25))    // < Constans sea level pressure in hPa (hectopascal)
@@ -11,10 +10,10 @@ static float temperature;
 static float pressure;
 static float altitude;
 
-arduino::String BMP_Data[3];
+float BMP_Data[3];
 
 void BMP_Init(void) {
-  for (static unsigned int i =0; i <2; i++) BMP_Data[i] = "";    // < Clear the array
+  for (static unsigned int i =0; i <2; i++) BMP_Data[i] = 0;    // < Clear the array
 
   unsigned int status;                                      // < Idk (what the fuck is this!?)
   status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
@@ -26,9 +25,13 @@ void BMP_Init(void) {
 }
 
 void BMP_Run(void) {
-  temperature = bmp.readTemperature();    BMP_Data[0] = String(temperature);  // < celsius 
-  pressure    = bmp.readPressure();       BMP_Data[1] = String(pressure);     // < Pa (pascal)
-  altitude    = bmp.readAltitude(cPress); BMP_Data[2] = String(altitude);     // < meter
+  temperature = bmp.readTemperature();    BMP_Data[0] = temperature;  // < celsius 
+  pressure    = bmp.readPressure();       BMP_Data[1] = pressure;     // < Pa (pascal)
+  altitude    = bmp.readAltitude(cPress); BMP_Data[2] = altitude;     // < meter
+  /*
+  BMP_Data[0] = bmp.readTemperature();
+  BMP_Data[1] = bmp.readPressure();
+  BMP_Data[2] = bmp.readAltitude(cPress);*/
 }
 
 #undef cPress

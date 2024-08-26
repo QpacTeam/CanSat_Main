@@ -21,7 +21,7 @@ void GPS_Init(void) {
 }
 
 void GPS_Run(void) {
-
+  
   static arduino::String buffer = "";
   unsigned int slot = 0;
   unsigned int counter = 0;
