@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d70a15-8411-402c-80e6-178b5716e307" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/BMP.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/BMP.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/globals.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/globals.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/Buzzer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Main_2.1/Buzzer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tests/Globals_test/Globals_test.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archive/Main_2.0/GPS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../archive/Main_2.0/GPS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archive/gps_adat/Work_data" beforeDir="false" afterPath="$PROJECT_DIR$/../archive/gps_adat/Work_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/File_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/File_transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/Test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/Test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/number.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Test/number.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/sender.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/sender.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +34,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2jTv4pirVzEGYsDHvjBj0UykSIr" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -45,15 +45,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/lorant/WorkingSpace/CanSat_Main/Server"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Server_Main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Test1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sender.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/lorant/WorkingSpace/CanSat_Main/Server&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Sender" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Server_Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Server" />
@@ -68,7 +77,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Server_Main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Sender/Server_Main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
