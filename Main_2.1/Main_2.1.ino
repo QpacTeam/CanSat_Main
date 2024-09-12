@@ -3,6 +3,7 @@
 #include "BMP.h"
 #include "IMU.h"
 #include "Card.h"
+#include "LoRa.h"
 
 /* === Test Statement === */
 #define TEST false
@@ -23,13 +24,15 @@ void setup() {
   Serial.begin(9600);
 
   SwTimer_Init(1);
-  BMP_Init();
-  Card_Init();
-  IMU_Init();
+  //BMP_Init();
+  //Card_Init();
+  //IMU_Init();
+  LoRa_Init();
   //                     CH:   Time:     Func:
-  SwTimer_Set_Continues(  0,    10,     BMP_Run );    // rewrite MAX_TIMER in SwTimer.cpp
-  SwTimer_Set_Continues(  1,    10,     IMU_Run );
-  SwTimer_Set_Continues(  2,    200,     Card_Run );
+  //SwTimer_Set_Continues(  0,    10,     BMP_Run );    // rewrite MAX_TIMER in SwTimer.cpp
+  //SwTimer_Set_Continues(  1,    10,     IMU_Run );
+  //SwTimer_Set_Continues(  2,    200,    Card_Run );
+  SwTimer_Set_Continues(  3,    100,     LoRa_Run ); 
 
 }
 

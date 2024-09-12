@@ -8,7 +8,7 @@ a = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 a.bind((HOST, PORT))
 
 while 1:
-    
+    ...
 
 
 
