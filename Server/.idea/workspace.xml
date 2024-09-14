@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d70a15-8411-402c-80e6-178b5716e307" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test/Rx.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/Serial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/radioRx_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Card.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Card.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../Main_2.1/Main_2.1.ino" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/File_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/File_transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/Rx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/Rx.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../code1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../radioRx.py" beforeDir="false" />
     </list>
