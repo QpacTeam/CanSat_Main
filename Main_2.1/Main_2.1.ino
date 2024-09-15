@@ -22,7 +22,10 @@ typedef enum {
 unsigned long missionState = 0;   // TOTO make the states!
 
 void setup() {
-  Serial.begin(9600);
+
+  if (TEST) Serial.begin(9600); 
+  
+  delay(500); //GPS drift compensation <<< 
 
   SwTimer_Init(1);
   BMP_Init();

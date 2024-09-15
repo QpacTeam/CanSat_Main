@@ -22,7 +22,7 @@ void Card_Init(void) {
   dataFile.println("BEGIN" +SEP + CardTime(1000));     // < Writeing the start sequence
   dataFile.close();
 
-  if (TEST) Serial.println("BEGIN" +SEP + CardTime(1000));
+  if (TEST) Serial.println("BEGIN" +SEP + CardTime(1000));    // < Test statement  <<<
 }
 
 void Card_Run(void) {
@@ -48,7 +48,7 @@ void Card_Run(void) {
     dataFile.close();
   }
 
-  if (TEST) {     // < Test statement <<<
+  if (TEST) {     // Test statement <<<
     Serial.println("Star" + SEP + String(CardTime(1000)) ); //S
     Serial.println("Cycl" + SEP + String(SwTimer_Cycle) ); // C
     Serial.println("Miss" + SEP + String(missionState) ); // M
