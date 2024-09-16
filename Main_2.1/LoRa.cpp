@@ -5,7 +5,11 @@
 UART LoRa(4, 5);
 
 static const arduino::String FREQ = "863000000";    // < Set frequence
-static const arduino::String PWR = "500";
+static const arduino::String PWR = "125";
+
+static char LoRa_Ms[64];
+
+arduino::String ms;
 
 void LoRa_Init(void) {
   LoRa.begin(115200);
@@ -14,6 +18,16 @@ void LoRa_Init(void) {
   delay(500);
   LoRa.print("sys reset\r\n");
   delay(500);
+  /*
+  ms = "radio set sync 34\r\n";
+  LoRa.print(ms);
+  delay(500);
+
+  ms = "radio set sync 34\r\n";
+  LoRa.print(ms);
+  delay(500);
+  
+  
   arduino::String ms = "radio set freq " + FREQ + "\r\n";
   LoRa.print(ms);
   delay(500);
@@ -22,13 +36,18 @@ void LoRa_Init(void) {
   ms = "radio set bw " + PWR + "\r\n";  // < bw does something <<< 
   LoRa.print(ms);
   delay(500);
+  */
 }
 
-static arduino::String Parcer(void) {    // TODO parcer <<<
-  return String("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef");
+static void Parcer(void) {    // TODO parcer <<<
+  for (int i=0; i < 10; i++) LoRa_Ms[i] = i;
+
 }
 
 void LoRa_Run(void) {
-  String ms = "radio tx " + Parcer() + " 1\r\n";
-  LoRa.print(ms);
+  Parcer();
+  
+  String ms = "radio tx 1234321 1\r\n";
+  Serial.println(ms);
+  LoRa.print("radio tx 1234321 1\r\n");   // < sending
 }
