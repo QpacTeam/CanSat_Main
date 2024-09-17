@@ -9,16 +9,6 @@
 /* === Test Statement === */
 #define TEST false
 
-// TODO finish the enum!
-/*
-typedef enum {
-  MAIN_STATE_BLS = 0,
-  MAIN_STATE_LOS = 1,
-  MAIN_STATE_MMS = 2,
-  MAIN_STATE_AMS = 3
-} missin_state_e;
-*/
-
 unsigned long missionState = 0;   // TODO make the states!
 
 void setup() {

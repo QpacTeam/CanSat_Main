@@ -39,8 +39,7 @@ void LoRa_Init(void) {
   */
 }
 
-static void Parcer(void) {    // TODO parcer <<<
-  //for (int i=0; i < 10; i++) LoRa_Ms[i] = i;
+static void Parcer(void) {
 
   int cur_time = GPS_Data[0];         // first data: time, 6 digits in message, no decimals
   for (int i = 5; i >= 0; i--){
@@ -91,9 +90,7 @@ static void Parcer(void) {    // TODO parcer <<<
 
 void LoRa_Run(void) {
   Parcer();
-
   
   String ms = "radio tx " + String(LoRa_Ms) + " 1\r\n";
-  Serial.println(ms);
   LoRa.print(ms);   // < sending
 }
