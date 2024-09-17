@@ -3,20 +3,20 @@
 #include "globals.h"
 
 UART LoRa(4, 5);
-
+/*
 static const arduino::String FREQ = "863000000";    // < Set frequence
 static const arduino::String PWR = "125";
-
-char LoRa_Ms[64];
+*/
+static char LoRa_Ms[64];
 
 arduino::String ms;
 
 void LoRa_Init(void) {
   LoRa.begin(115200);
   delay(2000);
-  LoRa.print("\r\n");
+  LoRa.print("\r\n");   // < the first message is trash 
   delay(500);
-  LoRa.print("sys reset\r\n");
+  LoRa.print("sys reset\r\n");  // < system reset
   delay(500);
   /*
   ms = "radio set sync 34\r\n";
@@ -82,10 +82,6 @@ static void Parcer(void) {
     LoRa_Ms[i] = geo % 10 + 48;
     geo = geo / 10;
   }
-
-  //LoRa_Ms[37] = '
-  
-  //Serial.println(LoRa_Ms);
 }
 
 void LoRa_Run(void) {
