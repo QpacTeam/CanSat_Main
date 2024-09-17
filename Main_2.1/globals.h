@@ -1,6 +1,6 @@
 /* Sensor data */
-extern float BMP_Data[3];             // < from BMP.cpp
-extern float IMU_Data[7];             // < from IMU.cp 
+extern float BMP_Data[3];             // < from BMP.cpp  <<< to double
+extern float IMU_Data[7];             // < from IMU.cp   <<< to double
 extern double GPS_Data[7];     // < from GPS.cpp <<< put the value
 
 /* system data */

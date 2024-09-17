@@ -61,11 +61,6 @@ static void GPS_parcer(void){
     i++;
     counter++;
   }
-/*
-  for (int j = 0; j < 7; j++) {   // <<<
-    Serial.println(GPS_Data[j]);
-  }
-  Serial.println("");*/
 }
 
 
@@ -75,7 +70,7 @@ void GPS_Run(void) {
 
     if (rec && ch == '\n') {
 
-//      Serial.println(ggaLine);  // <<<
+      Serial.println(ggaLine);  // <<<
       GPS_parcer();
       
       for (int i = 0; i <= lineIndex; i++){
