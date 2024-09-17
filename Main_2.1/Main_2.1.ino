@@ -6,15 +6,9 @@
 #include "LoRa.h"
 #include "GPS.h"
 
-/* === Test Statement === */
-#define TEST false
-
 unsigned long missionState = 0;   // TODO make the states!
 
 void setup() {
-
-  if (TEST) Serial.begin(9600); 
-  
   delay(500); //GPS drift compensation <<< 
 
   SwTimer_Init(1);
@@ -23,13 +17,12 @@ void setup() {
   //IMU_Init();
   LoRa_Init();
   GPS_Init();
-  //                     CH:   Time:     Func:
-   SwTimer_Set_Continues(  0,    1,    GPS_Run ); 
-  //SwTimer_Set_Continues(  1,    10,     BMP_Run );    // rewrite MAX_TIMER in SwTimer.cpp
+  //                     CH:   Time:     Func:      // rewrite MAX_TIMER in SwTimer.cpp
+  SwTimer_Set_Continues(  0,    1,    GPS_Run ); 
+  //SwTimer_Set_Continues(  1,    10,     BMP_Run );    
   //SwTimer_Set_Continues(  2,    10,     IMU_Run );
   //SwTimer_Set_Continues(  3,    20,    Card_Run );
   SwTimer_Set_Continues(  4,    100,    LoRa_Run );
-
 
 }
 
@@ -49,8 +42,5 @@ void loop() {
       break;
     default: break;
   }
-  //GPS_Run();
-  SwTimer_Run();
+  SwTimer_Run();    // < The core of everything
 }
-
-#undef TEST     // <<<
