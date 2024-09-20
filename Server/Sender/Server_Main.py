@@ -1,12 +1,15 @@
 import time
 import subprocess
+import Server_Run as Server
 import Utility              # < debug tool
 from icecream import ic     # < debug tool
 
 
 def init() -> bool:
     from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE
-
+    
+    Server.Radio_Init()
+    
     try:
         with open(STATE_FILE, "w") as File:  # < make the promt file if it isn't exist
             ic(File)
@@ -21,7 +24,6 @@ def init() -> bool:
 
 def loop() -> None:
     from Server_Variables import FREQUENCY, CONTROL_SLEEP
-    import Server_Run as Server
 
     act_time: float
     sleep_time: float
