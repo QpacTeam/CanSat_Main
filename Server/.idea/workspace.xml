@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d70a15-8411-402c-80e6-178b5716e307" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Sender/Usr_input_promt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sender/promt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/Command_Line_Tool/Command_promt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/Command_Line_Tool/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/Command_Line_Tool/promt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/promt.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/antiparcer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Client/antiparcer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sender/Server_Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sender/Server_Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sender/Server_Run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sender/Server_Run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/Rx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/Serial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/Test1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sender/Server_Variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sender/Server_Variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +32,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -42,25 +45,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.Server_Main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sender.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/lorant/WorkingSpace/CanSat_Main/Server&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.Command_promt.executor": "Run",
+    "Python.Server_Main.executor": "Run",
+    "Python.Test1.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.sender.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/lorant/WorkingSpace/CanSat_Main/Server/Sender",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Sender" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Sender" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Server_Main">
+    <configuration name="Command_promt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Server" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/Command_Line_Tool" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/Command_Line_Tool/Command_promt.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Server_Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Server" />
       <option name="ENV_FILES" value="" />
@@ -83,9 +113,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Server" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/Command_Line_Tool" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/Command_Line_Tool/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Server_Main" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.Command_promt" />
       </list>
     </recent_temporary>
   </component>

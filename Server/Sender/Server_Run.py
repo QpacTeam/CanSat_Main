@@ -1,10 +1,13 @@
-import socketserver
+from Server_Variables import STATE_FILE
 
 
 def Get_Operation_Mode() -> int:
     try:
-        with open('a', 'r') as fuck:
-            ...
+        with open(STATE_FILE, "r") as File:
+            data = File.readline()
+            return int(data)
+    except:
+        return 999
 
 
 
