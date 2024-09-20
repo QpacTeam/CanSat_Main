@@ -4,18 +4,18 @@ import Utility              # < debug tool
 from icecream import ic     # < debug tool
 
 
-def init() -> bool:     # << Set
+def init() -> bool:
     from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE
 
     try:
-        with open(STATE_FILE, "w") as File:
+        with open(STATE_FILE, "w") as File:  # < make the promt file if it isn't exist
             ic(File)
-            File.write(str(DEFAULT_STATE))
+            File.write(str(DEFAULT_STATE))  # < Set the dafault state
 
         ic(subprocess.Popen(COMMAND_INTERFACE, shell=True))  # < Starting the command interface
         return True
     except:
-        print("File unreachable (somehow...)")
+        print("File unreachable (somehow...)")   # < Nearly inpossible staement
         return False
 
 
@@ -39,10 +39,10 @@ def loop() -> None:
 
             # Main state machine
             match state:
-                case 1:
-                    Server.run()    # < Runs the server
+                case 1:         # < Runs the server
+                    Server.run()
 
-                case 2: # << Idle
+                case 2:         # < Idle
                     pass
 
                 case 66:
@@ -54,7 +54,7 @@ def loop() -> None:
                 case _:
                     pass
 
-        time.sleep(CONTROL_SLEEP)  # << loop sleep to optimize
+        time.sleep(CONTROL_SLEEP)  # << loop sleep to optimization
 
 
 if __name__ == "__main__":  # << Starting sequence
