@@ -3,9 +3,8 @@ from Server_Variables import CONTROL_SLEEP, DEFAULT_CLI_TEXT, CML_ENCODE, CML_HE
 
 
 def write_command(cmd) -> int:
-    i: int = 0
 
-    while i < 1000:
+    for i in range(1000):   # < Try 1000 times to avoid things like "Oh no! I can't write"
         try:
             with open(STATE_FILE, "w") as File:
                 File.write(str(cmd))
@@ -21,7 +20,6 @@ def Command_Line_feadback(cmd) -> str:
 
 
 def loop():
-
     CML_text: str = DEFAULT_CLI_TEXT
 
     while 1:
@@ -48,7 +46,7 @@ def loop():
                 print(CML_HELP)
 
             case "saving":
-                ... # TODO
+                ...  # TODO
 
             case _:
                 print("invalid param")
@@ -60,8 +58,8 @@ def loop():
 if __name__ == "__main__":
     '''
     Interestingly this code is working!
-    Seams the <subprocess.Popen> doesn't care about this starting statement
-    Do not thach this pleas
+    Seams the <subprocess.Popen> doesn't care about this starting statement at all...
+    Do not thach this pleas!
     '''
 
     loop()
