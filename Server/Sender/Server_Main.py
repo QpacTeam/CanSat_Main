@@ -1,24 +1,28 @@
 import time
 import subprocess
 import Server_Run as Server
-import Utility              # < debug tool
+# import Utility              # < debug tool
 from icecream import ic     # < debug tool
 
 
 def init() -> bool:
-    from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE
+    from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE, RECORDING_FILE, DEFAULT_RECORDING
     
     Server.Radio_Init()
     
     try:
         with open(STATE_FILE, "w") as File:  # < make the promt file if it isn't exist
             ic(File)
-            File.write(str(DEFAULT_STATE))  # < Set the dafault state
+            File.write(str(DEFAULT_STATE))  # < Set the default state
+
+        with open(RECORDING_FILE, "w") as File:  # < make the recording_state file if it isn't exist
+            ic(File)
+            File.write(str(DEFAULT_RECORDING))  # < Set the default recording
 
         ic(subprocess.Popen(COMMAND_INTERFACE, shell=True))  # < Starting the command interface
         return True
     except:
-        print("File unreachable (somehow...)")   # < Nearly inpossible staement
+        print("File unreachable (somehow...)")   # < Nearly impossible statement
         return False
 
 
@@ -47,8 +51,8 @@ def loop() -> None:
                 case 2:         # < Idle
                     pass
 
-                case 66:
-                    init()      # < Reset the server
+                case 66:        # < Reset the server
+                    init()
 
                 case 0:         # < Exit the process
                     break
@@ -56,7 +60,7 @@ def loop() -> None:
                 case _:
                     pass
 
-        time.sleep(CONTROL_SLEEP)  # << loop sleep to optimization
+        time.sleep(CONTROL_SLEEP)  # < loop sleep for optimization
 
 
 if __name__ == "__main__":  # << Starting sequence
