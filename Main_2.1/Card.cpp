@@ -1,5 +1,5 @@
-#include <cstdio>   // < WTF <<<
 #include <Arduino.h>
+#include <cstdio>   // < WTF <<<
 #include <SD.h>
 #include <SPI.h>
 #include "globals.h"
@@ -18,7 +18,7 @@ static arduino::String CardTime(const unsigned long CONVERTER);   // < pre-caal 
 void Card_Init(void) {
 
   if (TEST) {  // remove <<<
-    Serial.begin(9600)
+    Serial.begin(9600);
     Serial.println("BEGIN" +SEP + CardTime(1000));    // < Test statement  <<<
   }
   else {

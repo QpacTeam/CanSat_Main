@@ -30,10 +30,10 @@ void LoRa_Init(void) {
   
   arduino::String ms = "radio set freq " + FREQ + "\r\n";
   LoRa.print(ms);
+  delay(500);*/
+  LoRa.print("radio set pwr 20\n");  // < set pwr to 20
   delay(500);
-  LoRa.print("radio set pwr 1\r\n");  // < set pwr to 20
-  delay(500);
-  ms = "radio set bw " + PWR + "\r\n";  // < bw does something <<< 
+  /*ms = "radio set bw " + PWR + "\r\n";  // < bw does something <<< 
   LoRa.print(ms);
   delay(500);
   */
@@ -82,11 +82,29 @@ static void Parcer(void) {
     LoRa_Ms[i] = geo % 10 + 48;
     geo = geo / 10;
   }
+
+  int temp = BMP_Data[0] * 100;     // eighth data, temperature, first digit is SIGN!!!, 0 if +, 1 if -, plus 4 digits data, last 2 are decimals               
+  if (temp < 0) {
+    temp = -temp;
+    LoRa_Ms[37] = 1 + 48;
+  } else LoRa_Ms[37] = 0 + 48;
+  for (int i = 41; i >= 38; i--){
+    LoRa_Ms[i] = temp % 10 + 48;
+    temp = temp / 10;
+  }
+
+  int pres = BMP_Data[1] * 100;    // ninth data, pressure, 8 digits in message, last 2 are decimals
+  for (int i = 49; i >= 42; i--){
+    LoRa_Ms[i] = pres % 10 + 48;
+    pres = pres / 10;
+  }
+  
+  
 }
 
 void LoRa_Run(void) {
   Parcer();
-  
   String ms = "radio tx " + String(LoRa_Ms) + " 1\r\n";
   LoRa.print(ms);   // < sending
+  Serial.println(ms);
 }

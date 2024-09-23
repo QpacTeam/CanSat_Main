@@ -10,7 +10,7 @@ static float temperature;
 static float pressure;
 static float altitude;
 
-float BMP_Data[3];
+double BMP_Data[3];
 
 void BMP_Init(void) {
   for (static unsigned int i =0; i <2; i++) BMP_Data[i] = 0;    // < Clear the array
@@ -32,6 +32,10 @@ void BMP_Run(void) {
   BMP_Data[0] = bmp.readTemperature();
   BMP_Data[1] = bmp.readPressure();
   BMP_Data[2] = bmp.readAltitude(cPress);*/
+  for (int i = 0; i < 3; i++){
+    Serial.println(BMP_Data[i]);
+  }
+  Serial.println("");
 }
 
 #undef cPress

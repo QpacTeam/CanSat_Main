@@ -65,6 +65,7 @@ static void GPS_parcer(void){
 
 
 void GPS_Run(void) {
+  
   while (GPS.available() > 0){
     char ch = GPS.read();
 
