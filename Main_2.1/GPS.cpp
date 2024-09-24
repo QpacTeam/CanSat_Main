@@ -14,11 +14,23 @@ static bool dollarSign = false;
 static int signIndex = 0;
 static unsigned int lineIndex = 0;
 
+char Whole_GPS[128];    // <<<
+
 double GPS_Data[7];    /*0 1 3 6 7 8 10   ==>  time, latitude(N) longitude(E) Satelites-used HDOP MSL-altitude(M) Geoid-separation(M)*/
 
 void GPS_Init(void) {
   GPS.begin(9600);
-  delay(2000);  // < delay <<< 
+  delay(2000);  // < delay <<<
+
+    /* THING <<< */
+  Whole_GPS[0] = '$';
+  Whole_GPS[1] = 'G';
+  Whole_GPS[2] = 'P';
+  Whole_GPS[3] = 'G';
+  Whole_GPS[4] = 'G';
+  Whole_GPS[5] = 'A';
+  Whole_GPS[6] = ',';
+  
 }
 
 // sample:        
@@ -71,8 +83,14 @@ void GPS_Run(void) {
 
     if (rec && ch == '\n') {
 
-      Serial.println(ggaLine);  // <<<
       GPS_parcer();
+      
+      for (int ii =7; ii < 128; ii++) {
+        Whole_GPS[ii] = '\0';
+      }
+      for (int iii = 0; iii <= lineIndex; iii++) {
+        Whole_GPS[(iii + 7)] = ggaLine[iii];
+      }
       
       for (int i = 0; i <= lineIndex; i++){
         ggaLine[i] = '0';

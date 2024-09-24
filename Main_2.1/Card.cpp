@@ -21,9 +21,9 @@ void Card_Init(void) {
     Serial.begin(9600);
     Serial.println("BEGIN" +SEP + CardTime(1000));    // < Test statement  <<<
   }
-  else {
-    SD.begin(CHIPSELECT);
-    File dataFile = SD.open(FILE, FILE_WRITE);       // < Start sequenc
+  SD.begin(CHIPSELECT);
+  File dataFile = SD.open(FILE, FILE_WRITE);       // < Start sequenc
+  if (dataFile) {
     dataFile.println("BEGIN" +SEP + CardTime(1000));     // < Writeing the start sequence
     dataFile.close();
   }
@@ -57,8 +57,15 @@ void Card_Run(void) {
     dataFile.println("GPS6" + SEP + String(GPS_Data[6]) );
 
     dataFile.println("Ends" + SEP + String(CardTime(1000)) ); // E
-    dataFile.close();
+    dataFile.close(); 
   }
+
+  // MADE BY IMRE
+  File GPSFile = SD.open("GPS00", FILE_WRITE);  // < Start sequenc
+  if (GPSFile) {
+   GPSFile.println(String(Whole_GPS));  // <<<
+   GPSFile.close();
+   }
 
   if (TEST) {     // Test statement <<<
     Serial.println("Star" + SEP + String(CardTime(1000)) ); // S
@@ -75,6 +82,8 @@ void Card_Run(void) {
     Serial.println("YGry" + SEP + String(IMU_Data[4]) );    // YG
     Serial.println("ZGry" + SEP + String(IMU_Data[5]) );    // ZG
     Serial.println("Imut" + SEP + String(IMU_Data[6]) );    // I
+
+    Serial.println(String(Whole_GPS));
 
     Serial.println("GPS0" + SEP + String(GPS_Data[0]) );
     Serial.println("GPS1" + SEP + String(GPS_Data[1]) );

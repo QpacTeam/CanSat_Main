@@ -32,10 +32,10 @@ void BMP_Run(void) {
   BMP_Data[0] = bmp.readTemperature();
   BMP_Data[1] = bmp.readPressure();
   BMP_Data[2] = bmp.readAltitude(cPress);*/
-  for (int i = 0; i < 3; i++){
-    Serial.println(BMP_Data[i]);
-  }
-  Serial.println("");
+//  for (int i = 0; i < 3; i++){
+//    Serial.println(BMP_Data[i]);
+//  }
+//  Serial.println("");
 }
 
 #undef cPress
