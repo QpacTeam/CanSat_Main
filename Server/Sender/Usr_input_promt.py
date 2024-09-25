@@ -1,12 +1,12 @@
 import time
-from Server_Variables import CONTROL_SLEEP, DEFAULT_CLI_TEXT, CML_ENCODE, CML_HELP, STATE_FILE
+from Server_Variables import CONTROL_SLEEP, DEFAULT_CLI_TEXT, CML_ENCODE, CML_HELP, STATE_FILE_LOCATION
 
 
 def write_command(cmd) -> int:
 
     for i in range(1000):   # < Try 1000 times to avoid things like "Oh no! I can't write"
         try:
-            with open(STATE_FILE, "w") as File:
+            with open(STATE_FILE_LOCATION, "w") as File:
                 File.write(str(cmd))
             return 1
         except:
