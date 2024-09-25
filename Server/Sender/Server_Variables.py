@@ -6,11 +6,11 @@ CONTROL_SLEEP: float = 0.000167
 
 # === DEFAULT SETTINGS ===
 # Starting the command interface:
-COMMAND_INTERFACE: str = "python3 Sender/Usr_input_promt.py 1"
+COMMAND_INTERFACE: str = "python3 Usr_input_promt.py 1"
 # State-holder file:
-STATE_FILE_LOCATION: str = "Sender/Data/promt.txt"
+STATE_FILE_LOCATION: str = "Data/promt.txt"
 # Recording file:
-RECORDING_FILE_LOCATION: str = "Sender/Data/recording_state.txt"
+RECORDING_FILE_LOCATION: str = "Data/recording_state.txt"
 # The beginning state of the system:
 DEFAULT_STATE: int = 2
 # Recording state at the beginning:
@@ -24,7 +24,7 @@ RADIO_SLEEP: float = 0.2
 # The port where the server gets hosted:
 DEFAULT_RADIO_PORT: int = 9999
 # radio_port.txt file location:
-RADIO_PORT_FILE_LOCATION: str = "Sender/Data/radio_port.txt"
+RADIO_PORT_FILE_LOCATION: str = "Data/radio_port.txt"
 # Port where the LoRa located:
 SERIAL_FILE: str = "/dev/ttyS0"
 

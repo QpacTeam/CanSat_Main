@@ -6,8 +6,7 @@ from icecream import ic  # < debug tool
 
 
 def init() -> bool:
-    from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE_LOCATION, RECORDING_FILE_LOCATION, \
-        DEFAULT_RECORDING
+    from Server_Variables import COMMAND_INTERFACE, DEFAULT_STATE, STATE_FILE_LOCATION, RECORDING_FILE_LOCATION, DEFAULT_RECORDING
 
     Server.Radio_Init()
 
