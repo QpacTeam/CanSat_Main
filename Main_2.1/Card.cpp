@@ -63,9 +63,9 @@ void Card_Run(void) {
   // MADE BY IMRE
   File GPSFile = SD.open("GPS00", FILE_WRITE);  // < Start sequenc
   if (GPSFile) {
-   GPSFile.println(String(Whole_GPS));  // <<<
-   GPSFile.close();
-   }
+    GPSFile.println(String(Whole_GPS));  // <<<
+    GPSFile.close();
+  }
 
   if (TEST) {     // Test statement <<<
     Serial.println("Star" + SEP + String(CardTime(1000)) ); // S
