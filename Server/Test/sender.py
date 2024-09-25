@@ -33,7 +33,7 @@ while 1:
     try:
         communication_socket.send((str(num)).encode('utf-8'))
     except OSError: break
-    num+=1
+    num += 1
 
     alma = communication_socket.recv(1024).decode('utf-8')
     print(alma)
