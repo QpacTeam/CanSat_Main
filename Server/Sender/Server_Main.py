@@ -28,7 +28,7 @@ def init() -> bool:
 
 
 def loop() -> None:
-    from Server_Variables import FREQUENCY, CONTROL_SLEEP
+    from Server_Variables import FREQUENCY, CONTROL_SLEEP, STATE_FILE_LOCATION, DEFAULT_STATE
 
     act_time: float
     sleep_time: float
@@ -54,6 +54,11 @@ def loop() -> None:
 
                 case 66:  # < Reset the server
                     init()
+                    try:
+                        with open(STATE_FILE_LOCATION, "w") as File:
+                            File.write(str(DEFAULT_STATE))
+                    except:
+                        pass
 
                 case 0:  # < Exit the process
                     break
