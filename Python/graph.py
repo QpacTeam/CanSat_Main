@@ -45,7 +45,7 @@ class Function(object):
 
 if __name__ == "__main__":
 
-    f1 = Function(3, [200, 200, 200])
+    f1 = Function(3, [[0, 200], [0, 200], [0, 200]])
     f2 = Function(2)
     f3 = Function(2)
     f4 = Function(2)
