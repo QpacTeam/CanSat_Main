@@ -1,24 +1,6 @@
 import serial
 import time
 
-ser = serial.Serial("/dev/ttyUSB0", 112500)
-
-def init():
-    data = '\r\n'.encode('utf-8') #fordítás a lora nyelvére
-    ser.write(data)
-    time.sleep(0.2)
-    data = 'sys reset\r\n'.encode('utf-8') #sys reset
-    ser.write(data)
-    time.sleep(0.2)
-    data = 'radio rx 0\r\n'.encode('utf-8') #start receiving
-    ser.write(data)
-
-    x = 0
-    while x != 9:
-        be = ser.readline()
-        be = be.decode('utf-8')
-        print(be, end='')
-        x += 1
 
 def substring(be, a, b):
     sub = ""
@@ -32,8 +14,7 @@ def substring(be, a, b):
         print("HIBA------------------------------------------------------HIBA")
         return 0
 
-def get_data():
-    be = ser.readline().decode("UTF-8")
+def antiparcer_data(be):
 
     try:
         time = substring(be, 9, 15)
@@ -71,9 +52,9 @@ def get_data():
     with open('radio.txt', 'a') as file:
         file.write(f"time: {time}\nlatitude: {latitude}\nlongitude: {longitude}\nsatellites used: {sat}\nhdop: {hdop}\naltitude: {altitude}\ngeoid separation: {geo}\ntemperature: {temp}\npressure: {pres}\n")
 
-    return [latitude, altitude, longitude]
+    return [latitude, altitude, longitude, sat, hdop, altitude, geo, temp, pres]
 
-if __name__ == "__main__":
-    init()
-    while True:
-        get_data()
+# if __name__ == "__main__":
+#     init()
+#     while True:
+#         get_data()

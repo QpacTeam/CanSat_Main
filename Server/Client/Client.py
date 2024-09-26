@@ -1,4 +1,4 @@
-import socket as soc
+import socket as soc, antiparcer
 
 HOST = '172.21.13.220'
 
@@ -9,6 +9,6 @@ socket.connect((HOST, PORT))
 
 while 1:
     alma = socket.recv(1024).decode("utf-8")
-    print(alma)
+    print(antiparcer.antiparcer_data(alma))
     socket.send("szam3".encode('utf-8'))
 

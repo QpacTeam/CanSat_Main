@@ -14,7 +14,7 @@ def substring(be, a, b):
         print("HIBA------------------------------------------------------HIBA")
         return 0
 
-def antiparcer_data():
+def antiparcer_data(be):
 
     try:
         time = substring(be, 9, 15)
@@ -52,7 +52,7 @@ def antiparcer_data():
     with open('radio.txt', 'a') as file:
         file.write(f"time: {time}\nlatitude: {latitude}\nlongitude: {longitude}\nsatellites used: {sat}\nhdop: {hdop}\naltitude: {altitude}\ngeoid separation: {geo}\ntemperature: {temp}\npressure: {pres}\n")
 
-    return [latitude, altitude, longitude]
+    return [latitude, altitude, longitude, sat, hdop, altitude, geo, temp, pres]
 
 # if __name__ == "__main__":
 #     init()
