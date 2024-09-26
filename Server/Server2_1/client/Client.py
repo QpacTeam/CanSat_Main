@@ -1,4 +1,4 @@
-import socket as soc, antiparcer
+import socket as soc, antiparcer, icecream as ic
 
 HOST = '172.21.13.220'
 
@@ -10,5 +10,6 @@ socket.connect((HOST, PORT))
 while 1:
     alma = socket.recv(1024).decode("utf-8")
     socket.send("szam1".encode('utf-8'))
-    print(antiparcer(alma))
+    print(antiparcer.antiparcer_data(alma))
+
 
