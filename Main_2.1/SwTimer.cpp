@@ -11,7 +11,7 @@ static void (*cb[MAX_TIMER])(void);  // < Callbacks to call by the Software Time
 static unsigned long tick_time;
 static unsigned long time_ms;
 
-unsigned long SwTimer_Cycle = 0;   // < Counting the cycles           <<<
+unsigned long SwTimer_Cycle = 0;   // < Counting the cycles
 
 void SwTimer_Init(unsigned long ticktime) {
 
@@ -55,7 +55,7 @@ void SwTimer_Run(void) {
       }
     }
   }
-  SwTimer_Cycle++;    // < Cycle grow       <<<
+  SwTimer_Cycle++;    // < Cycle grow
 }
 
 // Set the timers
@@ -86,7 +86,7 @@ void SwTimer_Stop(unsigned int ch) {
 
 unsigned long SwTimer_Get_Remaining_Time(unsigned int ch) {
   if (ch < MAX_TIMER) {
-    return counters[ch];    // Show the remaining time of the chosen timer
+    return counters[ch];    // Show the remaining time of a chosen timer
   }
   return 0;
 }

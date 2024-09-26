@@ -105,5 +105,4 @@ void LoRa_Run(void) {
   Parcer();
   String ms = "radio tx " + String(LoRa_Ms) + " 1\r\n";
   LoRa.print(ms);   // < sending
-//  Serial.println(ms);
 }

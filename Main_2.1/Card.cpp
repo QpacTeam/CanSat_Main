@@ -9,10 +9,10 @@
 #define TEST true   // TODO remove once
 
 #define CHIPSELECT 10
-#define FILE "aa00.txt"   // < Itt lehet gond   <<<
+#define FILE "aa00.txt"
+#define GPS_SAVE_FILE "GPS00.txt"
 
 static const arduino::String SEP = "=";
-
 static arduino::String CardTime(const unsigned long CONVERTER);   // < pre-caal the function
 
 void Card_Init(void) {
@@ -61,9 +61,9 @@ void Card_Run(void) {
   }
 
   // MADE BY IMRE
-  File GPSFile = SD.open("GPS00", FILE_WRITE);  // < Start sequenc
+  File GPSFile = SD.open(GPS_SAVE_FILE, FILE_WRITE);  // < Start sequenc
   if (GPSFile) {
-    GPSFile.println(String(Whole_GPS));  // <<<
+    GPSFile.println(String(Whole_GPS));
     GPSFile.close();
   }
 
@@ -107,3 +107,4 @@ static arduino::String CardTime(const unsigned long CONVERTER) {     // Give the
 
 #undef CHIPSELECT
 #undef FILE
+#undef GPS_SAVE_FILE

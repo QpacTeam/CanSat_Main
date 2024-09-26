@@ -29,7 +29,4 @@ void IMU_Run(void) {
   if (IMU.temperatureAvailable()) { IMU.readTemperature(Temp);
     IMU_Data[6] = Temp;
   }
-//  for (int i = 0; i < 7; i++){
-//    Serial.println(IMU_Data[i]);
-//  }
 }
