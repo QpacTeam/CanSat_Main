@@ -21,8 +21,10 @@ while 1:
         while 1:
             pass
 
+print("=== SERVER START ===")
 print(f"host: {HOST}")
 print(f"port: {PORT}")
+print("")
 
 Radio.Radio_Init()
 
@@ -44,6 +46,7 @@ def get_connection():
     comm, address = SERVER.accept()
     c = Comp(comm)
     Devices.append(c)
+    print(f" >>> DEVICE {len(Devices)} CONNECTED")
 
 
 for i in range(DEVICES_TO_LISTEN):
@@ -60,11 +63,11 @@ while 1:
 
         if respond == "error":
             Devices.pop(i)
-            print(f" >>> DEVICE {i} LEFT")
+            print(f" >>> ONE DEVICE LEFT")
             i -= 1
 
-        if Cycle == STATUS_PRINT_FREQ:
-            print(f" DEVICES AVAILABLE: {len(Devices)}")
+        if Cycle >= STATUS_PRINT_FREQ:
+            print(f" devices available: {len(Devices)}")
             Cycle = 0
 
         i += 1

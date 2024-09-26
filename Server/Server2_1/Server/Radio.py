@@ -1,4 +1,4 @@
-import serial, datetime
+import serial
 import time
 from time import strftime, gmtime
 from Variables import RADIO_CTL_SLEEP_TIME, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, USE_TIME_SIGNO
@@ -19,30 +19,23 @@ def Radio_Init():
     if USE_TIME_SIGNO:
         T = f"{strftime("%Y_%b_%d_%H_%M_%S",gmtime(time.time()))}"
         File_Name = f"{SAVE_FILE_LOCATION}/{T}"
-        ic(File_Name)
         with open(File_Name, "w") as File:
-            File.write("BEGIN")
+            File.write("BEGIN\n")
     else:
         File_Name = f"{SAVE_FILE_LOCATION}/{DEFAULT_SAVE_NAME}"
         with open(File_Name, "w") as File:
-            File.write("BEGIN")
-
+            File.write("BEGIN\n")
 
     Radio_Write()   # Sends bullshit
     Radio_Write('sys reset\r\n')    # Sys reset
     Radio_Write('radio rx 0\r\n', 0)    # Start receiving
 
-    x = 0
-    while x != 6:
-        msg = ser.readline().decode('utf-8')
-        print(msg, end='')
-        x += 1
 
 def Radio_Run():
     msg = ser.readline().decode("utf-8")
-    ic(File_Name)
     with open(File_Name, "a") as file:
-        file.write(msg)
+        text: str = f"{strftime("%H:%M:%S",gmtime(time.time()))}.{"%03d" % int(time.time()%1*1000//1)} > {msg}"
+        file.write(text)
     return msg
 
 
