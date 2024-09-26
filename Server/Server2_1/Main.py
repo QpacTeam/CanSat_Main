@@ -21,23 +21,39 @@ class Comp(object):
         try:
             self.comm.send(ms.encode("utf-8"))
             return self.comm.recv(1024).decode("utf-8")
-        except: sys.exit(0)
+        except:
+            comps.remove(self.comm)
+            return "error"
 
 
-def send(comp, i):
-    print("hurray", comp)
-    while 1:
-        alma = comp.send(str(i))
-        if alma != None: print(alma)
-        time.sleep(0.5)
-        print("most")
+
+# def send(comp):
+#     print("hurray", comp)
+#     while 1:
+#         alma = comp.send(str(i))
+#         if alma != None: print(alma)
+#         time.sleep(0.5)
+#         print("most")
 
 SERVER.listen(5)
 
-for i in range(5):
-    communication_socket, address = SERVER.accept()
-    c = Comp(communication_socket)
-    t = threading.Thread(target= send, args=(c, i,))
+def get_connection():
+    comm, address = SERVER.accept()
+    c = Comp(comm)
+    comps.append(c)
+
+comps = []
+
+for i in range(10):
+    t = threading.Thread(target= get_connection)
     t.start()
+
+while 1:
+    be = lora_accept.get_data()
+    i = 0
+    while i < len(comps):
+        respond = i.send(be)
+        if respond == "error":
+            i -= 1
 
 

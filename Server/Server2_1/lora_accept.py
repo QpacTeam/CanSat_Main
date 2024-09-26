@@ -23,7 +23,6 @@ def get_data():
     be = ser.readline().decode("utf-8")
     with open("data.txt", "a") as file:
         file.write(be)
-
     return be
 
 
