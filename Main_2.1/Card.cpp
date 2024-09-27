@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <cstdio>   // < WTF <<<
+//#include <cstdio>     < WTF <<<
 #include <SD.h>
 #include <SPI.h>
 #include "globals.h"
