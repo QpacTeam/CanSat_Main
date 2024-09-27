@@ -2,7 +2,6 @@ import serial
 import time
 from time import strftime, gmtime
 from Variables import RADIO_CTL_SLEEP_TIME, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, USE_TIME_SIGNO
-from icecream import ic
 
 
 ser = serial.Serial("/dev/ttyUSB0", 112500)

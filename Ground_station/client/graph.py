@@ -1,21 +1,28 @@
 import matplotlib.pyplot as plt
 import random
-import time
+from icecream import ic
 
 
 class Function(object):
-    def __init__(self, dimension, size=None):
-        if size is None:
-            size = [[0, 100], [0, 100], [0, 100]]
+    def __init__(self, dimension, attributes: list, size=None, color=(0, 0, 1)):
+        # if size is None:
+        #     size = [[0, 100], [0, 100], [0, 100]]
+
+        ic()
 
         self.fig = plt.figure()
         self.dimension = dimension
+        self.attributes = attributes
+        self.color = color
+
         if dimension == 3:
+            ic()
             self.ax = self.fig.add_subplot(projection="3d")
 
-            self.ax.set_xlim3d(size[0][0], size[0][1])
-            self.ax.set_ylim3d(size[1][0], size[1][1])
-            self.ax.set_zlim3d(size[2][0], size[2][1])
+            if size != None:
+                self.ax.set_xlim3d(size[0][0], size[0][1])
+                self.ax.set_ylim3d(size[1][0], size[1][1])
+                self.ax.set_zlim3d(size[2][0], size[2][1])
 
             self.x = []
             self.y = []
@@ -24,9 +31,12 @@ class Function(object):
             self.plot = [self.x, self.y, self.z]
 
         else:
+            ic()
             self.ax = self.fig.add_subplot()
-            self.ax.set_xlim(size[0][0], size[0][1])
-            self.ax.set_ylim(size[1][0], size[1][1])
+
+            if size != None:
+                self.ax.set_xlim(size[0][0], size[0][1])
+                self.ax.set_ylim(size[1][0], size[1][1])
 
             self.x = []
             self.y = []
@@ -37,10 +47,16 @@ class Function(object):
         for i in range(self.dimension):
             self.plot[i].append(l[i])
 
-    def draw(self, color):
+    def draw(self, color=None):
+        if color == None:
+            color = self.color
         self.ax.plot(*self.plot, color=color)
         self.fig.canvas.draw()
         plt.pause(0.1)
+
+
+def End():
+    plt.show()
 
 
 if __name__ == "__main__":
@@ -72,5 +88,3 @@ if __name__ == "__main__":
         f2.draw((1, 0, 0))
         f3.draw((0, 1, 0))
         f4.draw((1, 1, 0))
-
-    plt.show()

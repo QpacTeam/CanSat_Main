@@ -10,13 +10,13 @@ def substring(be, a, b):
         print("HIBA------------------------------------------------------HIBA")
         return 0
 
-def antiparcer_data(be):
+def antiparcer_data(be, Save_File: str):
 
     try:
         time = substring(be, 9, 15)
     except : time = 0
 
-    time = "%02d:%02d:%02d" % (time//10000, time%10000//100, time%100)
+    time = "%02d:%02d:%02d" % (time//10000, time % 10000//100, time % 100)
     latitude = substring(be,15, 23)
     latitude = latitude // 1000000 + (latitude % 1000000) / 10000 / 60
     longitude = substring(be, 23, 32)
@@ -33,7 +33,7 @@ def antiparcer_data(be):
     pres = substring(be,51, 59) / 100
 
     if 1:
-        print(be, end="")
+        print(be)
         print(time)
         print(latitude)
         print(longitude)
@@ -45,7 +45,7 @@ def antiparcer_data(be):
         print(pres)
         print("")
 
-    with open('radio.txt', 'a') as file:
+    with open(Save_File, 'a') as file:
         file.write(f"time: {time}\nlatitude: {latitude}\nlongitude: {longitude}\nsatellites used: {sat}\nhdop: {hdop}\naltitude: {altitude}\ngeoid separation: {geo}\ntemperature: {temp}\npressure: {pres}\n")
     return [latitude, altitude, longitude, sat, hdop, altitude, geo, temp, pres]
 

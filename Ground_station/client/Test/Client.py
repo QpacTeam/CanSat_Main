@@ -14,7 +14,3 @@ while 1:
     line = socket.recv(1024).decode("utf-8")
     socket.send("szam1".encode('utf-8'))
     datalist = antiparcer.antiparcer_data(line)
-
-
-
-
