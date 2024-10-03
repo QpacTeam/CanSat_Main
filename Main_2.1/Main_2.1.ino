@@ -18,7 +18,7 @@ void setup() {
   LoRa_Init();
   GPS_Init();
   //                     CH:   Time:        Func:      // rewrite MAX_TIMER in SwTimer.cpp
-  SwTimer_Set_Continues(  0,    1,        GPS_Run ); 
+  SwTimer_Set_Continues(  0,    1,        GPS_Run );
   SwTimer_Set_Continues(  1,    100,      BMP_Run );    
   SwTimer_Set_Continues(  2,    100,      IMU_Run );
   SwTimer_Set_Continues(  3,    100,      Card_Run );
