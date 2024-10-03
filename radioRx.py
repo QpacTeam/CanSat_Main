@@ -3,7 +3,7 @@ import time
 x = 0
 be = ''
 print('start')
-ser = serial.Serial("COM9", 112500)
+ser = serial.Serial("COM13", 112500)
 file = open('radio_1.txt', 'a')
 
 data = '\r\n'
