@@ -3,20 +3,20 @@
 #include "globals.h"
 
 UART LoRa(4, 5);
-
+/*
 static const arduino::String FREQ = "863000000";    // < Set frequence
 static const arduino::String PWR = "125";
-
-char LoRa_Ms[64];
+*/
+static char LoRa_Ms[64];
 
 arduino::String ms;
 
 void LoRa_Init(void) {
   LoRa.begin(115200);
   delay(2000);
-  LoRa.print("\r\n");
+  LoRa.print("\r\n");   // < the first message is trash 
   delay(500);
-  LoRa.print("sys reset\r\n");
+  LoRa.print("sys reset\r\n");  // < system reset
   delay(500);
   /*
   ms = "radio set sync 34\r\n";
@@ -30,17 +30,16 @@ void LoRa_Init(void) {
   
   arduino::String ms = "radio set freq " + FREQ + "\r\n";
   LoRa.print(ms);
+  delay(500);*/
+  LoRa.print("radio set pwr 20\n");  // < set pwr to 20
   delay(500);
-  LoRa.print("radio set pwr 1\r\n");  // < set pwr to 20
-  delay(500);
-  ms = "radio set bw " + PWR + "\r\n";  // < bw does something <<< 
+  /*ms = "radio set bw " + PWR + "\r\n";  // < bw does something <<< 
   LoRa.print(ms);
   delay(500);
   */
 }
 
-static void Parcer(void) {    // TODO parcer <<<
-  //for (int i=0; i < 10; i++) LoRa_Ms[i] = i;
+static void Parcer(void) {
 
   int cur_time = GPS_Data[0];         // first data: time, 6 digits in message, no decimals
   for (int i = 5; i >= 0; i--){
@@ -84,16 +83,26 @@ static void Parcer(void) {    // TODO parcer <<<
     geo = geo / 10;
   }
 
-  //LoRa_Ms[37] = '
+  int temp = BMP_Data[0] * 100;     // eighth data, temperature, first digit is SIGN!!!, 0 if +, 1 if -, plus 4 digits data, last 2 are decimals               
+  if (temp < 0) {
+    temp = -temp;
+    LoRa_Ms[37] = 1 + 48;
+  } else LoRa_Ms[37] = 0 + 48;
+  for (int i = 41; i >= 38; i--){
+    LoRa_Ms[i] = temp % 10 + 48;
+    temp = temp / 10;
+  }
+
+  int pres = BMP_Data[1] * 100;    // ninth data, pressure, 8 digits in message, last 2 are decimals
+  for (int i = 49; i >= 42; i--){
+    LoRa_Ms[i] = pres % 10 + 48;
+    pres = pres / 10;
+  }
   
-  //Serial.println(LoRa_Ms);
 }
 
 void LoRa_Run(void) {
   Parcer();
-
-  
   String ms = "radio tx " + String(LoRa_Ms) + " 1\r\n";
-  Serial.println(ms);
   LoRa.print(ms);   // < sending
 }

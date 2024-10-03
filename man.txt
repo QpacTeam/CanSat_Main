@@ -12,3 +12,6 @@ Git pull and rewrite everything:
 
 Revrite all file localy:
 > git pull --rebase --autostash
+
+Set the git config to rebase:
+> git config pull.rebase false

@@ -5,20 +5,30 @@
 UART GPS(8, 9);
 
 static char ggaLine[128];
-
-static char sign[5];
-static bool rec = false;
-static bool dollarSign = false;
-
-
-static int signIndex = 0;
 static unsigned int lineIndex = 0;
 
+static bool dollarSign = false;   // < "It was a new line!" indicator
+static char sign[5];              // < Holds the line indicator
+static int signIndex = 0;
+
+static bool rec = false;          // < Recording data if its the right line
+
+char Whole_GPS[128];    // <<<
 double GPS_Data[7];    /*0 1 3 6 7 8 10   ==>  time, latitude(N) longitude(E) Satelites-used HDOP MSL-altitude(M) Geoid-separation(M)*/
 
 void GPS_Init(void) {
   GPS.begin(9600);
-  delay(2000);  // < delay <<< 
+  delay(2000);  // < delay <<<
+
+    /* THING */
+  Whole_GPS[0] = '$';
+  Whole_GPS[1] = 'G';
+  Whole_GPS[2] = 'P';
+  Whole_GPS[3] = 'G';
+  Whole_GPS[4] = 'G';
+  Whole_GPS[5] = 'A';
+  Whole_GPS[6] = ',';
+  
 }
 
 // sample:        
@@ -36,7 +46,7 @@ static void GPS_parcer(void){
 
     if (counter == 0 || counter == 1 || counter == 3 || counter == 6 || counter == 7 || counter == 8 || counter == 10) {  // < data needed
 
-      /* convert and store char data into double */
+      /* convert and store char array data into double */
       while (ggaLine[i] != ',') {
         if (ggaLine[i] == '.') {
           point++;
@@ -65,38 +75,45 @@ static void GPS_parcer(void){
 
 
 void GPS_Run(void) {
-  while (GPS.available() > 0){
+  
+  while (GPS.available() > 0){    // Read data constantaniusly from the GPS serial buffer
     char ch = GPS.read();
 
     if (rec && ch == '\n') {
 
-      Serial.println(ggaLine);  // <<<
-      GPS_parcer();
+      GPS_parcer();   // Parce the data
       
-      for (int i = 0; i <= lineIndex; i++){
-        ggaLine[i] = '0';
+      for (unsigned int i =7; i < 128; i++) {    // Emptying Whole_GPS array
+        Whole_GPS[i] = '\0';
+      }
+      for (unsigned int j = 0; j <= lineIndex; j++) {  // Copying ggaLine array into Whole_GPS array
+        Whole_GPS[j + 7] = ggaLine[j];
+      }
+      
+      for (unsigned int k = 0; k <= lineIndex; k++){   // Emptying ggaLine array
+        ggaLine[k] = '0';
       }
       lineIndex = 0;
       rec = false;
     }
 
     if (rec){
-      ggaLine[lineIndex] = ch;
+      ggaLine[lineIndex] = ch;    // Recording the line
       lineIndex++;
     }
 
     if (signIndex == 5){
-      signIndex = 0;
+      signIndex = 0;        // Identify the linebegin
       dollarSign = false;
       
-      if (sign[0] == 'G' && sign[1] == 'P' && sign[2] == 'G' && sign[3] == 'G' && sign[4] == 'A') rec = true;
+      if (sign[0] == 'G' && sign[1] == 'P' && sign[2] == 'G' && sign[3] == 'G' && sign[4] == 'A') rec = true;   // Starts saving tle line if it's the <GPGGA>
     }
     
     if (dollarSign){
-      sign[signIndex] = ch;
+      sign[signIndex] = ch;   // Recording the linebeginn
       signIndex++;
     }
 
-    if (ch == '$') dollarSign = true;
+    if (ch == '$') dollarSign = true;     // < Begin recording if it's new line
   }
 }

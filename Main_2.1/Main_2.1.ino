@@ -6,45 +6,28 @@
 #include "LoRa.h"
 #include "GPS.h"
 
-/* === Test Statement === */
-#define TEST false
-
-// TODO finish the enum!
-/*
-typedef enum {
-  MAIN_STATE_BLS = 0,
-  MAIN_STATE_LOS = 1,
-  MAIN_STATE_MMS = 2,
-  MAIN_STATE_AMS = 3
-} missin_state_e;
-*/
-
 unsigned long missionState = 0;   // TODO make the states!
 
 void setup() {
-
-  if (TEST) Serial.begin(9600); 
-  
-  delay(500); //GPS drift compensation <<< 
+  delay(500);     //GPS drift compensation <<<
 
   SwTimer_Init(1);
-  //BMP_Init();
-  //Card_Init();
-  //IMU_Init();
+  BMP_Init();
+  Card_Init();
+  IMU_Init();
   LoRa_Init();
   GPS_Init();
-  //                     CH:   Time:     Func:
-   SwTimer_Set_Continues(  0,    1,    GPS_Run ); 
-  //SwTimer_Set_Continues(  1,    10,     BMP_Run );    // rewrite MAX_TIMER in SwTimer.cpp
-  //SwTimer_Set_Continues(  2,    10,     IMU_Run );
-  //SwTimer_Set_Continues(  3,    20,    Card_Run );
-  SwTimer_Set_Continues(  4,    100,    LoRa_Run );
-
+  //                     CH:   Time:        Func:      // rewrite MAX_TIMER in SwTimer.cpp
+  SwTimer_Set_Continues(  0,    1,        GPS_Run ); 
+  SwTimer_Set_Continues(  1,    100,      BMP_Run );    
+  SwTimer_Set_Continues(  2,    100,      IMU_Run );
+  SwTimer_Set_Continues(  3,    100,      Card_Run );
+  SwTimer_Set_Continues(  4,    100,      LoRa_Run );
 
 }
 
 void loop() {
-  switch (missionState) {
+  switch (missionState) {   // < TODO finish this
     case 0:
       // Tasks
       break;
@@ -59,8 +42,6 @@ void loop() {
       break;
     default: break;
   }
-  //GPS_Run();
-  SwTimer_Run();
+  
+  SwTimer_Run();    // < The core of everything
 }
-
-#undef TEST     // <<<
