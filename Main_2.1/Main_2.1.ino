@@ -5,6 +5,7 @@
 #include "Card.h"
 #include "LoRa.h"
 #include "GPS.h"
+#include "MPU-6050.h"
 
 unsigned long missionState = 0;   // TODO make the states!
 
@@ -17,12 +18,14 @@ void setup() {
   IMU_Init();
   LoRa_Init();
   GPS_Init();
+  MPU_Init();
   //                     CH:   Time:        Func:      // rewrite MAX_TIMER in SwTimer.cpp
   SwTimer_Set_Continues(  0,    1,        GPS_Run );
   SwTimer_Set_Continues(  1,    100,      BMP_Run );    
   SwTimer_Set_Continues(  2,    100,      IMU_Run );
   SwTimer_Set_Continues(  3,    100,      Card_Run );
   SwTimer_Set_Continues(  4,    100,      LoRa_Run );
+  SwTimer_Set_Continues(  5,    100,      MPU_Run );
 
 }
 
