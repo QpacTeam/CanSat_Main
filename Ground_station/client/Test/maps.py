@@ -10,6 +10,7 @@ map = folium.Map(location=[47.552195, 17.761286666666667], zoom_start=13)
 folium.Marker([47.552195, 17.761286666666667], popup='My Home').add_to(map)
 
 def show():
+    map.on()
     t = threading.Thread(target = map.show_in_browser)
     t.start()
 
