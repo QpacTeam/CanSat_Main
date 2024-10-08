@@ -1,16 +1,16 @@
-#define pRes0 A7
-#define pRes1 A6
+/*#define pRes0 7
+#define pRes1 6
 #define pRes2
 #define pRes3 
-
+*/
 int val;
 
 
 void setup() {
 
   Serial.begin(9600);
-
-  pinMode(pRes0, INPUT);
+  delay(1000);
+  //pinMode(21, INPUT);
   /*
   pinMode(pRes1, INPUT);
   pinMode(pRes2, INPUT);
@@ -18,7 +18,7 @@ void setup() {
 }
 
 void loop() {
-  val = analogRead(pRes0);
-  Serial.prinln(val);
+  //val = analogRead(21);
+  Serial.println(val);
   delay(2); 
 }
