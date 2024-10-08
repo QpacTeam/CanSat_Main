@@ -19,7 +19,7 @@ graphs_list = []
 
 # === INIT ===
 if USE_TIME_SIGNO:
-    T = f"{strftime("%Y_%b_%d_%H_%M_%S", gmtime(time.time()))}"
+    T = f"{strftime('%Y_%b_%d_%H_%M_%S', gmtime(time.time()))}"
     File_Name = f"{SAVE_FILE_LOCATION}/{T}"
     with open(File_Name, "w") as File:
         File.write("BEGIN\n")

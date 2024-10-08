@@ -16,7 +16,7 @@ def Radio_Init():
     global File_Name
 
     if USE_TIME_SIGNO:
-        T = f"{strftime("%Y_%b_%d_%H_%M_%S",gmtime(time.time()))}"
+        T = f"{strftime('%Y_%b_%d_%H_%M_%S',gmtime(time.time()))}"
         File_Name = f"{SAVE_FILE_LOCATION}/{T}"
         with open(File_Name, "w") as File:
             File.write("BEGIN\n")
@@ -33,8 +33,9 @@ def Radio_Init():
 def Radio_Run():
     msg = ser.readline().decode("utf-8")
     with open(File_Name, "a") as file:
-        text: str = f"{strftime("%H:%M:%S",gmtime(time.time()))}.{"%03d" % int(time.time()%1*1000//1)} > {msg}"
+        text: str = f"{strftime('%H:%M:%S',gmtime(time.time()))}.{'%03d' % int(time.time()%1*1000//1)} > {msg}"
         file.write(text)
+        file.close()
     return msg
 
 
