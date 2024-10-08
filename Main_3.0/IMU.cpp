@@ -2,9 +2,11 @@
 #include <Arduino_LSM6DSOX.h>
 #include "IMU.h"
 
-static float Ax, Ay, Az, Gx, Gy, Gz;
-static int Temp;
-float IMU_Data[7];
+const unsigned int size = 7;
+
+float Ax, Ay, Az, Gx, Gy, Gz;
+int Temp;
+float IMU_Data[size];
 
 void IMU_Init(void) {
   unsigned int i;
@@ -29,4 +31,12 @@ void IMU_Run(void) {
   if (IMU.temperatureAvailable()) { IMU.readTemperature(Temp);
     IMU_Data[6] = Temp;
   }
+}
+
+float* IMU_GetData(void){
+  return IMU_Data;
+}
+
+unsigned int IMU_GetDataSize(void){
+  return size;  
 }

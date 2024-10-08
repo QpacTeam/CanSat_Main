@@ -3,19 +3,18 @@
 #include <Adafruit_BMP280.h>
 #include "BMP.h"
 
-#define cPress ((float)(1013.25))    // < Constans sea level pressure in hPa (hectopascal)
+const float cPress = 1013.25;    // < Constans sea level pressure in hPa (hectopascal)
+const unsigned int size = 3;
 
-static Adafruit_BMP280 bmp;
-static float temperature;
-static float pressure;
-static float altitude;
+double BMP_Data[size];
 
-double BMP_Data[3];
+Adafruit_BMP280 bmp;
+float temperature;
+float pressure;
+float altitude;
 
 void BMP_Init(void) {
-  for (static unsigned int i =0; i <2; i++) BMP_Data[i] = 0;    // < Clear the array
-
-  unsigned int status;                                      // < Idk (what the fuck is this!?)
+  unsigned int status;
   status = bmp.begin(BMP280_ADDRESS_ALT, BMP280_CHIPID);
   bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
                   Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
@@ -30,4 +29,10 @@ void BMP_Run(void) {
   altitude    = bmp.readAltitude(cPress); BMP_Data[2] = altitude;     // < meter
 }
 
-#undef cPress
+double* BMP_GetData(void){
+  return BMP_Data;
+}
+
+unsigned int BMP_GetDataSize(void){
+  return size;
+}
