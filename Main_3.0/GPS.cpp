@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include "GPS.h"
 
-#define whole_line
+#define whole_line 0
 
 const unsigned int size = 7;
 
 UART GPS(8, 9);
 
-#ifdef whole_line
+#if whole_line == 1
   char Whole_GPS[128] = "GPGGA";    // <<<
 #endif
 
@@ -43,7 +43,7 @@ void GPS_Run(void) {
 
       GPS_parcer();   // Parce the data
 
-      #ifdef whole_line
+      #if whole_line == 1
         for (unsigned int i =7; i < 128; i++) {    // Emptying Whole_GPS array
           Whole_GPS[i] = '\0';
         }
@@ -80,13 +80,9 @@ void GPS_Run(void) {
   }
 }
 
-double* GPS_GetData(void){
-  return GPS_Data;
-}
+double* GPS_GetData(void) return GPS_Data;
+//unsigned int GPS_GetDataSize(void) return size;
 
-unsigned int GPS_GetDataSize(void){
-  return size;
-}
 
 void GPS_parcer(void){
   

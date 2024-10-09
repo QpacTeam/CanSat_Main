@@ -21,7 +21,6 @@ void setup() {
   SwTimer_Set_Continues(  2,    100,      IMU_Run );
   SwTimer_Set_Continues(  3,    100,      Card_Run );
   SwTimer_Set_Continues(  4,    100,      LoRa_Run );
-
 }
 
 void loop() {  

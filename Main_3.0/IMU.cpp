@@ -33,10 +33,5 @@ void IMU_Run(void) {
   }
 }
 
-float* IMU_GetData(void){
-  return IMU_Data;
-}
-
-unsigned int IMU_GetDataSize(void){
-  return size;  
-}
+float* IMU_GetData(void) return IMU_Data;
+//unsigned int IMU_GetDataSize(void) return size;  

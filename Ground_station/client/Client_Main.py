@@ -2,11 +2,11 @@ from icecream import ic
 import socket as soc
 import time
 from time import strftime, gmtime
-import graph
+# import graph
 import antiparcer
 from Variables import USE_TIME_SIGNO, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, DEFAULT_PORT, CTL_SLEEP
 
-HOST: str = '172.21.13.220'
+HOST: str = '127.0.1.1'
 PORT: int = DEFAULT_PORT
 socket = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
 
@@ -32,7 +32,7 @@ save_time = time.time()
 
 
 # === ADDING FUNCTIONS === TODO make the graphs
-graphs_list.append(graph.Function(3, [9, 1, 1]))
+#graphs_list.append(graph.Function(3, [9, 1, 1]))
 
 
 # === MAIN LOOP ===

@@ -7,7 +7,6 @@ const float cPress = 1013.25;    // < Constans sea level pressure in hPa (hectop
 const unsigned int size = 3;
 
 double BMP_Data[size];
-
 Adafruit_BMP280 bmp;
 float temperature;
 float pressure;
@@ -29,10 +28,5 @@ void BMP_Run(void) {
   altitude    = bmp.readAltitude(cPress); BMP_Data[2] = altitude;     // < meter
 }
 
-double* BMP_GetData(void){
-  return BMP_Data;
-}
-
-unsigned int BMP_GetDataSize(void){
-  return size;
-}
+double* BMP_GetData(void) return BMP_Data;
+//unsigned int BMP_GetDataSize(void) return size;
