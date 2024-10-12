@@ -28,5 +28,7 @@ void BMP_Run(void) {
   altitude    = bmp.readAltitude(cPress); BMP_Data[2] = altitude;     // < meter
 }
 
-double* BMP_GetData(void) return BMP_Data;
+double* BMP_GetData(void) {
+  return BMP_Data;
+}
 //unsigned int BMP_GetDataSize(void) return size;

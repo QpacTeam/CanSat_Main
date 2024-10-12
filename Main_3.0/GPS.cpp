@@ -80,7 +80,9 @@ void GPS_Run(void) {
   }
 }
 
-double* GPS_GetData(void) return GPS_Data;
+double* GPS_GetData(void) {
+  return GPS_Data;
+}
 //unsigned int GPS_GetDataSize(void) return size;
 
 
