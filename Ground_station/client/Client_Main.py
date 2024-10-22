@@ -2,11 +2,15 @@ from icecream import ic
 import socket as soc
 import time
 from time import strftime, gmtime
-import graph
+# import graph
 import antiparcer
 from Variables import USE_TIME_SIGNO, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, DEFAULT_PORT, CTL_SLEEP
 
+<<<<<<< HEAD
 HOST: str = '172.23.8.129'
+=======
+HOST: str = '127.0.1.1'
+>>>>>>> f4f2b6054a8f7ad6d561130aecdc1b5c3ecf6c6a
 PORT: int = DEFAULT_PORT
 socket = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
 
@@ -19,7 +23,7 @@ graphs_list = []
 
 # === INIT ===
 if USE_TIME_SIGNO:
-    T = f"{strftime("%Y_%b_%d_%H_%M_%S", gmtime(time.time()))}"
+    T = f"{strftime('%Y_%b_%d_%H_%M_%S', gmtime(time.time()))}"
     File_Name = f"{SAVE_FILE_LOCATION}/{T}"
     with open(File_Name, "w") as File:
         File.write("BEGIN\n")
@@ -32,7 +36,7 @@ save_time = time.time()
 
 
 # === ADDING FUNCTIONS === TODO make the graphs
-graphs_list.append(graph.Function(3, [9, 1, 1]))
+#graphs_list.append(graph.Function(3, [9, 1, 1]))
 
 
 # === MAIN LOOP ===

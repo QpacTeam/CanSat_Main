@@ -1,26 +1,25 @@
 #include <Arduino.h>
-//#include <cstdio>     < WTF <<<
 #include <SD.h>
 #include <SPI.h>
 #include "globals.h"
 #include "Card.h"
 
-/* === Test Statement === */
-#define TEST true   // TODO remove once
+#define TEST
 
 #define CHIPSELECT 10
 #define FILE "aa00.txt"
-#define GPS_SAVE_FILE "GPS00.txt"
+#define GPS_SAVE_FILE "GPS01.txt"
 
 static const arduino::String SEP = "=";
 static arduino::String CardTime(const unsigned long CONVERTER);   // < pre-caal the function
 
 void Card_Init(void) {
 
-  if (TEST) {  // remove <<<
+  #ifdef TEST    // < Test statement  <<<
     Serial.begin(9600);
-    Serial.println("BEGIN" +SEP + CardTime(1000));    // < Test statement  <<<
-  }
+    Serial.println("BEGIN" +SEP + CardTime(1000));
+  #endif
+  
   SD.begin(CHIPSELECT);
   File dataFile = SD.open(FILE, FILE_WRITE);       // < Start sequenc
   if (dataFile) {
@@ -67,7 +66,7 @@ void Card_Run(void) {
     GPSFile.close();
   }
 
-  if (TEST) {     // Test statement <<<
+  #ifdef TEST // < Test statement 
     Serial.println("Star" + SEP + String(CardTime(1000)) ); // S
     Serial.println("Cycl" + SEP + String(SwTimer_Cycle) );  // C
     Serial.println("Miss" + SEP + String(missionState) );   // M
@@ -93,8 +92,8 @@ void Card_Run(void) {
     Serial.println("GPS5" + SEP + String(GPS_Data[5]) );
     Serial.println("GPS6" + SEP + String(GPS_Data[6]) );
 
-    Serial.println("Ends" + SEP + String(CardTime(1000)) ); // E 
-  }
+    Serial.println("Ends" + SEP + String(CardTime(1000)) ); // E
+  #endif
 }
 
 static arduino::String CardTime(const unsigned long CONVERTER) {     // Give the time signo to the message (in seconds)
