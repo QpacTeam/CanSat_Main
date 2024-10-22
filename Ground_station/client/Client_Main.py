@@ -6,7 +6,7 @@ import graph
 import antiparcer
 from Variables import USE_TIME_SIGNO, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, DEFAULT_PORT, CTL_SLEEP
 
-HOST: str = '192.168.0.32'
+HOST: str = '172.23.8.129'
 PORT: int = DEFAULT_PORT
 socket = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
 

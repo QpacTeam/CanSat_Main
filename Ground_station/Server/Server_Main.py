@@ -50,8 +50,8 @@ def get_connection():
 
 
 for i in range(DEVICES_TO_LISTEN):
-    thred = threading.Thread(target= get_connection)    # < Creating threds
-    thred.start()
+    thread = threading.Thread(target= get_connection)    # < Creating threads
+    thread.start()
 
 # === MAIN LOOP ===
 while 1:
