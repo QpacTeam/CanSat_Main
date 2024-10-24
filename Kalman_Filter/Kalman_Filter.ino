@@ -1,128 +1,84 @@
-#include <Wire.h>
+#include <Arduino_LSM6DSOX.h>
 
-float RatePitch, RateRoll, RateYaw;
-float RateCalibrationPitch, RateCalibrationRoll, RateCalibrationYaw;
-int RateCalibrationNumber;
+const unsigned int size = 7;
+float Ax, Ay, Az, RRoll, RPitch, RYaw, ARoll, APitch, AYaw;
+float RCRoll, RCPitch, RCYaw;
+int RCNumber;
+float KARoll = 0, KAPitch = 0, KUARoll = 1*1, KUAPitch = 2*2;
+float Output[] = {0, 0};
+double Ts = 0.004;
+float cal;
+float IMU_Data[size];
 
-uint32_t LoopTimer;
-float DesiredRateRoll, DesiredRatePitch, DesiredRateYaw;
-float ErrorRateRoll, ErrorRatePitch, ErrorRateYaw;
-float InputRoll, InputThrottle, InputPitch, InputYaw;
-float PrevErrorRateRoll, PrevErrorRatePitch, PrevErrorRateYaw;
-float PrevItermRateRoll, PrevItermRatePitch, PrevItermRateYaw;
-float PIDReturn[]={0, 0, 0};
-float PRateRoll=0.6 ; float PRatePitch=PRateRoll; float PRateYaw=2;
-float IRateRoll=3.5 ; float IRatePitch=IRateRoll; float IRateYaw=12;
-float DRateRoll=0.03 ; float DRatePitch=DRateRoll; float DRateYaw=0;
-float MotorInput1, MotorInput2, MotorInput3, MotorInput4;
 
-void gyro_signals(void) {
-  
-  
-  RateRoll=(float)GyroX/65.5;
-  RatePitch=(float)GyroY/65.5;
-  RateYaw=(float)GyroZ/65.5;
+void kalman(float KState, float KUncertainty, float KInput, float KMeasurement){
+  KState = KState + Ts * KInput;
+  KUncertainty = KUncertainty + Ts*Ts*1*1;
+  float KGain = KUncertainty*1/(1*KUncertainty + 1*1);
+  KState = KState + KGain * (KMeasurement - KState);
+  KUncertainty = (1-KGain)*KUncertainty;
+  Output[0] = KState;
+  Output[1] = KUncertainty;
 }
+
 
 void setup() {
-  pinMode(5, OUTPUT);
-  digitalWrite(5, HIGH);
-  pinMode(13, OUTPUT);
-  digitalWrite(13, HIGH);   
-  Wire.setClock(400000);
-  Wire.begin();
-  delay(250);
-  Wire.beginTransmission(0x68);
-  Wire.write(0x6B);
-  Wire.write(0x00);
-  Wire.endTransmission();
-  for (RateCalibrationNumber=0; RateCalibrationNumber<2000; RateCalibrationNumber ++) {
-    gyro_signals();
-    RateCalibrationRoll+=RateRoll;
-    RateCalibrationPitch+=RatePitch;
-    RateCalibrationYaw+=RateYaw;
-    delay(1);
-  }
-  RateCalibrationRoll/=2000;
-  RateCalibrationPitch/=2000;
-  RateCalibrationYaw/=2000;
-  analogWriteFrequency(1, 250);
-  analogWriteFrequency(2, 250);
-  analogWriteFrequency(3, 250);
-  analogWriteFrequency(4, 250);
-  analogWriteResolution(12);
-  pinMode(6, OUTPUT);
-  digitalWrite(6, HIGH);
-  battery_voltage();
-  if (Voltage > 8.3) { digitalWrite(5, LOW); BatteryAtStart=BatteryDefault; }
-  else if (Voltage < 7.5) {BatteryAtStart=30/100*BatteryDefault ;}
-  else { digitalWrite(5, LOW);
-    BatteryAtStart=(82*Voltage-580)/100*BatteryDefault; }
-  ReceiverInput.begin(14);
-  while (ReceiverValue[2] < 1020 || ReceiverValue[2] > 1050) {
-    read_receiver();
-    delay(4);
-  }
-  LoopTimer=micros();
+  Serial.begin(9600);
+  unsigned int i;
+  Ax, Ay, Az, RRoll, RPitch, RYaw = 0;
+
+  for (i=0; i < 7; i++) IMU_Data[i] = '\0';
+  if (!IMU.begin()) Serial.println("Failed to initialize IMU!");  // TODO add error modul!
+  delay(500);
+  //i = 0;
+  //cal = 0;
+  //while (i < 2000) {
+  //  if (IMU.gyroscopeAvailable()) {
+  //    IMU.readGyroscope(RRoll, RPitch, RYaw);
+  //    i++;
+  //    cal += RRoll;
+  //    Serial.println(RRoll);
+  //  }
+  //  delay(1);
+  //}
+  //cal = cal/2000;
 }
-void loop() {
-  gyro_signals();
-  RateRoll-=RateCalibrationRoll;
-  RatePitch-=RateCalibrationPitch;
-  RateYaw-=RateCalibrationYaw;
-  read_receiver();
-  DesiredRateRoll=0.15*(ReceiverValue[0]-1500);
-  DesiredRatePitch=0.15*(ReceiverValue[1]-1500);
-  InputThrottle=ReceiverValue[2];
-  DesiredRateYaw=0.15*(ReceiverValue[3]-1500);
-  ErrorRateRoll=DesiredRateRoll-RateRoll;
-  ErrorRatePitch=DesiredRatePitch-RatePitch;
-  ErrorRateYaw=DesiredRateYaw-RateYaw;
-  pid_equation(ErrorRateRoll, PRateRoll, IRateRoll, DRateRoll, PrevErrorRateRoll, PrevItermRateRoll);
-       InputRoll=PIDReturn[0];
-       PrevErrorRateRoll=PIDReturn[1]; 
-       PrevItermRateRoll=PIDReturn[2];
-  pid_equation(ErrorRatePitch, PRatePitch, IRatePitch, DRatePitch, PrevErrorRatePitch, PrevItermRatePitch);
-       InputPitch=PIDReturn[0]; 
-       PrevErrorRatePitch=PIDReturn[1]; 
-       PrevItermRatePitch=PIDReturn[2];
-  pid_equation(ErrorRateYaw, PRateYaw,
-       IRateYaw, DRateYaw, PrevErrorRateYaw,
-       PrevItermRateYaw);
-       InputYaw=PIDReturn[0]; 
-       PrevErrorRateYaw=PIDReturn[1]; 
-       PrevItermRateYaw=PIDReturn[2];
-  if (InputThrottle > 1800) InputThrottle = 1800;
-  MotorInput1= 1.024*(InputThrottle-InputRoll-InputPitch-InputYaw);
-  MotorInput2= 1.024*(InputThrottle-InputRoll+InputPitch+InputYaw);
-  MotorInput3= 1.024*(InputThrottle+InputRoll+InputPitch-InputYaw);
-  MotorInput4= 1.024*(InputThrottle+InputRoll-InputPitch+InputYaw);
-if (MotorInput1 > 2000)MotorInput1 = 1999;
-  if (MotorInput2 > 2000)MotorInput2 = 1999; 
-  if (MotorInput3 > 2000)MotorInput3 = 1999; 
-  if (MotorInput4 > 2000)MotorInput4 = 1999;
-  int ThrottleIdle=1180;
-  if (MotorInput1 < ThrottleIdle) MotorInput1 =  ThrottleIdle;
-  if (MotorInput2 < ThrottleIdle) MotorInput2 =  ThrottleIdle;
-  if (MotorInput3 < ThrottleIdle) MotorInput3 =  ThrottleIdle;
-  if (MotorInput4 < ThrottleIdle) MotorInput4 =  ThrottleIdle;
-  int ThrottleCutOff=1000;
-  if (ReceiverValue[2]<1050) {
-    MotorInput1=ThrottleCutOff; 
-    MotorInput2=ThrottleCutOff;
-    MotorInput3=ThrottleCutOff; 
-    MotorInput4=ThrottleCutOff;
-    reset_pid();
+
+void loop(void) {
+  if (IMU.accelerationAvailable()) { IMU.readAcceleration(Ax, Ay, Az);
+    IMU_Data[0] = Ax;
+    IMU_Data[1] = Ay;
+    IMU_Data[2] = Az;
+
+    ARoll = atan(Ay/sqrt(Ax*Ax + Az*Az)) / 3.14 * 180;
+    APitch = atan(-1*Ax/sqrt(Ay*Ay + Az*Az));
+    //AYaw = atan(Az/sqrt(Ax*Ax + Ay*Ay));
+    //Serial.println(AnglePitch/3.14*180);
+    //Serial.println(AngleRoll/3.14*180);
+    //Serial.println(AngleYaw/3.14*180);
+
   }
-  analogWrite(1,MotorInput1);
-  analogWrite(2,MotorInput2);
-  analogWrite(3,MotorInput3); 
-  analogWrite(4,MotorInput4);
-  battery_voltage();
-  CurrentConsumed=Current*1000*0.004/3600+CurrentConsumed;
-  BatteryRemaining=(BatteryAtStart-CurrentConsumed)/BatteryDefault*100;
-  if (BatteryRemaining<=30) digitalWrite(5, HIGH);
-  else digitalWrite(5, LOW);
-  while (micros() - LoopTimer < 4000);
-  LoopTimer=micros();
+  if (IMU.gyroscopeAvailable()) { IMU.readGyroscope(RRoll, RPitch, RYaw);
+    IMU_Data[3] = RRoll;
+    IMU_Data[4] = RPitch;
+    IMU_Data[5] = RYaw;
+
+    //Serial.println(RRoll - cal);
+    //Serial.println(RPitch);
+    //Serial.println(RYaw);
+  
+  }
+
+  kalman(KARoll, KUARoll, RRoll-cal, ARoll);
+  KARoll = Output[0];
+  KUARoll = Output[1];
+  //kalman(KAPitch, KUAPitch, RPitch, APitch);
+  //KAPitch = Output[0];
+  //KUAPitch = Output[1];
+
+  delay(Ts*1000);
+  Serial.print("Kalman: ");
+  Serial.println(KARoll);
+  Serial.print("Acc: ");
+  Serial.println(ARoll);
 }
