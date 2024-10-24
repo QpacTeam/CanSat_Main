@@ -4,7 +4,7 @@ const unsigned int size = 7;
 float Ax, Ay, Az, RRoll, RPitch, RYaw, ARoll, APitch, AYaw;
 float RCRoll, RCPitch, RCYaw;
 int RCNumber;
-float KARoll = 0, KAPitch = 0, KUARoll = 1*1, KUAPitch = 2*2;
+float KARoll = 0, KAPitch = 0, KUARoll = 2*2, KUAPitch = 2*2;
 float Output[] = {0, 0};
 double Ts = 0.004;
 float cal;
@@ -23,8 +23,8 @@ int counter = 0;
 
 void kalman(float KState, float KUncertainty, float KInput, float KMeasurement){
   KState = KState + Ts * KInput;
-  KUncertainty = KUncertainty + Ts*Ts*1*1;
-  float KGain = KUncertainty*1/(1*KUncertainty + 1*1);
+  KUncertainty = KUncertainty + Ts*Ts*5*5;              // Sakkozz vele
+  float KGain = KUncertainty*1/(1*KUncertainty + 2*2);
   KState = KState + KGain * (KMeasurement - KState);
   KUncertainty = (1-KGain)*KUncertainty;
   Output[0] = KState;
@@ -65,17 +65,15 @@ void loop(void) {
     IMU_Data[1] = Ay;
     IMU_Data[2] = Az;
 
-    //Serial.println(Ax);
-    //Serial.println(Ay);
-    //Serial.println(Az);
-
-    ARoll = atan(Ay/sqrt(Ax*Ax + Az*Az)) / PI * 180;
-    APitch = atan(-1*Ax/sqrt(Ay*Ay + Az*Az)) / PI * 180;
-
-    //Serial.println(Ax);
-    //Serial.println(Ay);
-    //Serial.println(Az);
-
+    if (Ax == 0.0 && Az == 0.0) {
+      if (Ay >= 0) ARoll = 90;
+      else ARoll = -90;
+    } else ARoll = atan(Ay/sqrt(Ax*Ax + Az*Az)) / PI * 180;
+      
+    if (Ay == 0.0 && Az == 0.0) {
+      if (Ax >= 0) APitch = -90;
+      else APitch = 90;
+    } else APitch = atan(-1*Ax/sqrt(Ay*Ay + Az*Az)) / PI * 180;
   }
   if (IMU.gyroscopeAvailable()) { IMU.readGyroscope(RRoll, RPitch, RYaw);
     
@@ -97,25 +95,27 @@ void loop(void) {
   kalman(KARoll, KUARoll, RRoll-cal, ARoll);
   KARoll = Output[0];
   KUARoll = Output[1];
-  //kalman(KAPitch, KUAPitch, RPitch, APitch);
-  //KAPitch = Output[0];
-  //KUAPitch = Output[1];
+  kalman(KAPitch, KUAPitch, RPitch, APitch);
+  KAPitch = Output[0];
+  KUAPitch = Output[1];
 
   //delay(1);
   delay(Ts*1000);
-  Serial.print("Variable_1:");
+  Serial.print("Kalman_Roll_Angle:");
   Serial.print(KARoll);
   Serial.print(",");
-  Serial.print("Variable_2:");
+  Serial.print("Acc_Roll_Angle:");
   Serial.print(ARoll);
   Serial.print(",");
-  Serial.print("Variable_3:");
+  Serial.print("Kalman_Pitch_Angle:");
+  Serial.print(KAPitch);
+  Serial.print(",");
+  Serial.print("Acc_Pitch_Angle:");
+  Serial.print(APitch);
+  Serial.print(",");
+  Serial.print("-c:");
   Serial.print(-90);
   Serial.print(",");
-  Serial.print("Variable_4:");
+  Serial.print("c:");
   Serial.println(90);
-
- 
-
-
 }
