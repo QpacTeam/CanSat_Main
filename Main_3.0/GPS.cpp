@@ -34,6 +34,7 @@ void GPS_Init(void) {
 
 void GPS_Run(void) {
   unsigned int max = 10;
+  
   while (max > 0 && GPS.available() > 0){    // Read data constantaniusly from the GPS serial buffer
     max--;
     
@@ -69,6 +70,7 @@ void GPS_Run(void) {
       dollarSign = false;
       
       if (sign[0] == 'G' && sign[1] == 'P' && sign[2] == 'G' && sign[3] == 'G' && sign[4] == 'A') rec = true;   // Starts saving tle line if it's the <GPGGA>
+      
     }
     
     if (dollarSign){
