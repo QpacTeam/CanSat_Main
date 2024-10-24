@@ -5,6 +5,7 @@
 #include "IMU.h"
 
 #define setting 0
+#define Test 1
 
 void Parcer(void);
 
@@ -48,6 +49,9 @@ void LoRa_Run(void) {
   Parcer();
   String ms = "radio tx " + String(LoRa_Ms) + " 1\r\n";
   LoRa.print(ms);   // < sending
+  #if Test == 1
+    Serial.println(ms);
+  #endif
 }
 
 void Parcer(void) {
@@ -112,3 +116,4 @@ void Parcer(void) {
 }
 
 #undef setting
+#undef Test

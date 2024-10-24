@@ -6,11 +6,8 @@ from time import strftime, gmtime
 import antiparcer
 from Variables import USE_TIME_SIGNO, SAVE_FILE_LOCATION, DEFAULT_SAVE_NAME, DEFAULT_PORT, CTL_SLEEP
 
-<<<<<<< HEAD
-HOST: str = '172.23.8.129'
-=======
-HOST: str = '127.0.1.1'
->>>>>>> f4f2b6054a8f7ad6d561130aecdc1b5c3ecf6c6a
+
+HOST: str = '192.168.0.33'
 PORT: int = DEFAULT_PORT
 socket = soc.socket(soc.AF_INET, soc.SOCK_STREAM)
 

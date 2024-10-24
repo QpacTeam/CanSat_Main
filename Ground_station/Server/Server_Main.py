@@ -63,7 +63,7 @@ while 1:
 
         if respond == "error":
             Devices.pop(i)
-            print(f" >>> ONE DEVICE LEFT")
+            print(" >>> ONE DEVICE LEFT")
             i -= 1
 
         if Cycle >= STATUS_PRINT_FREQ:
