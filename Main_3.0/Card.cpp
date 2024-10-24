@@ -6,7 +6,7 @@
 #include "GPS.h"
 #include "IMU.h"
 
-#define TEST
+#define TEST 0
 
 const unsigned int CHIPSELECT = 10;
 const char FILENAME[9] = "aa00.txt";
@@ -16,7 +16,7 @@ const arduino::String SEP = "=";
 float CardTime(unsigned long CONVERTER);   // < pre-call the function
 
 void Card_Init(void) {
-  #ifdef TEST    // < Test statement  <<<
+  #if TEST == 1    // < Test statement  <<<
     Serial.begin(9600);
     Serial.println("BEGIN" + SEP + CardTime(1000));
   #endif
@@ -71,7 +71,7 @@ void Card_Run(void) {
     GPSFile.close();
   }*/
 
-  #ifdef TEST // < Test statement 
+  #if TEST == 1   // < Test statement 
     Serial.println("Star" + SEP + String(CardTime(1000)) ); // S
     //Serial.println("Cycl" + SEP + String(SwTimer_Cycle) );  // C
     //Serial.println("Miss" + SEP + String(missionState) );   // M
