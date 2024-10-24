@@ -4,10 +4,11 @@
 #include "SwTimer.h"
 
 
-#define BUZZER_PIN (21)
-#define BUZZER_RESOUTION ((int)(100))  // 100 milisec
-#define BUZZER_HIGH_PERIOD 6
-#define BUZZER_LOW_PERIOD 20
+const unsigned int BUZZER_PIN = 21;
+const unsigned int BUZZER_RESOUTION = 100;  // 100 milisec
+const unsigned int BUZZER_HIGH_PERIOD = 6;
+const unsigned int BUZZER_LOW_PERIOD = 20;
+
 
 typedef enum {
   BUZZER_SM_OFF = 0,
@@ -21,10 +22,9 @@ static int tick_counter;
 static int period;
 static int duty;
 
-void Buzzer_tick(void);
+void Buzzer_Run(void);
 
 void Buzzer_Init(void) {
-
   act_sm = BUZZER_SM_OFF;  //  Buzzer off State
   new_sm = BUZZER_SM_OFF;
   tick_counter = 0;
@@ -37,7 +37,7 @@ void Buzzer_Init(void) {
 
 
 
-void Buzzer_Run(void) {
+void Buzzer_Set(void) {
 
   if (act_sm != BUZZER_SM_OFF) {
     if (tick_counter >= period) {
@@ -69,7 +69,7 @@ void Buzzer_Run(void) {
               }
             default:
               {
-                // Do it nothing
+                // Do nothing
                 break;
               }
           }
@@ -153,10 +153,10 @@ void Buzzer_Cmd(buzzer_cmd_e cmd) {
   }
 }
 
-void Buzzer_tick(void) {
+void Buzzer_Run(void) {
   tick_counter++;
 }
-
+/*
 void Buzzer_Beep(int Buzzer_Beep_Num) {
   for (Buzzer_Beep_Num; Buzzer_Beep_Num > 0; Buzzer_Beep_Num --) {
     digitalWrite(BUZZER_PIN, HIGH);
@@ -167,12 +167,4 @@ void Buzzer_Beep(int Buzzer_Beep_Num) {
     delay(300);
   }
   delay(700);
-}
-
-
-
-
-#undef BUZZER_PIN
-#undef BUZZER_RESOUTION((int)(100))  // 100 milisec
-#undef BUZZER_HIGH_PERIOD 6
-#undef BUZZER_LOW_PERIOD 20
+}*/
