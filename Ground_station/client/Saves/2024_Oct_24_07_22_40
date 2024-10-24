@@ -1,1 +1,10 @@
 BEGIN
+time: 00:00:00
+latitude: 0.0
+longitude: 0.0
+satellites used: 0
+hdop: 0.0
+altitude: 0.0
+geoid separation: 0.0
+temperature: 0.0
+pressure: 0.0
